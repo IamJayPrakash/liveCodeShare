@@ -1,6 +1,6 @@
 // src/app/room/[id]/page.tsx
 
-import { CodeEditor } from "@/components/CodeEditor";
+import CodeEditor from "@/components/CodeEditor";
 import { Header } from "@/components/Header";
 import { SocketProvider } from "@/components/SocketProvider";
 
