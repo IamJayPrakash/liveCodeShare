@@ -1,19 +1,35 @@
-// src/components/SocketProvider.tsx
-"use client";
+"use client"; // Add this at the top
 
-import { ReactNode, useEffect } from "react";
-import { socket } from "@/lib/socket";
+import React, { createContext, useEffect, useState } from 'react';
+import { io, Socket } from 'socket.io-client';
+import { toast } from 'sonner';
 
-export const SocketProvider = ({ children }: { children: ReactNode }) => {
+const SocketContext = createContext<Socket | null>(null);
+
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
+
+export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
+  const [socket, setSocket] = useState<Socket | null>(null);
+
   useEffect(() => {
-    if (!socket.connected) {
-      socket.connect();
-    }
+    const socketInstance = io(SOCKET_URL, { autoConnect: false });
+    console.log("Socket initialized:", socketInstance);
+    setSocket(socketInstance);
+
+    socketInstance.on('user-joined', (userId) => {
+      toast.success(`${userId} has joined the room!`);
+    });
 
     return () => {
-      socket.disconnect();
+      socketInstance.disconnect();
+      socketInstance.off('user-joined');
     };
   }, []);
 
-  return <>{children}</>;
+  
+  return (
+    <SocketContext.Provider value={socket}>
+      {children}
+    </SocketContext.Provider>
+  );
 };

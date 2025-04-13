@@ -1,10 +1,7 @@
-// src/app/room/[id]/page.tsx
+import { Metadata } from "next";
+import RoomPageClient from "@/components/RoomPageClient";
 
-import CodeEditor from "@/components/CodeEditor";
-import { Header } from "@/components/Header";
-import { SocketProvider } from "@/components/SocketProvider";
-
-export const metadata = {
+export const metadata: Metadata = {
   title: "LiveCodeShare - Live Room",
   description: "Collaborate in real-time with others in this code room.",
   openGraph: {
@@ -17,18 +14,10 @@ export const metadata = {
 };
 
 interface RoomPageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default async function RoomPage({ params }: RoomPageProps) {
   const { id: roomId } = await params;
-
-  return (
-    <SocketProvider>
-      <div className="flex flex-col h-screen">
-        <Header roomId={roomId} />
-        <CodeEditor roomId={roomId} />
-      </div>
-    </SocketProvider>
-  );
+  return <RoomPageClient roomId={roomId} />;
 }
