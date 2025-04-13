@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 interface RoomPageProps {
-  params: { id: string };
+  readonly params: Promise<{ id: string }>;
 }
 
 export default async function RoomPage({ params }: RoomPageProps) {
