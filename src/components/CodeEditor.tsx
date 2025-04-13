@@ -36,7 +36,7 @@ export const CodeEditor = ({ roomId }: Props) => {
         onChange={handleChange}
         className="w-full h-full bg-zinc-800 p-4 text-sm font-mono rounded resize-none outline-none"
       />
-      <div className="mt-2 flex justify-end">
+      <div className="flex justify-end">
         <Button onClick={() => alert("Run/Share feature coming soon!")}>
           Run
         </Button>

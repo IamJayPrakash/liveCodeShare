@@ -2,6 +2,7 @@
 
 import { CodeEditor } from "@/components/CodeEditor";
 import { Header } from "@/components/Header";
+import { SocketProvider } from "@/components/SocketProvider";
 
 export const metadata = {
   title: "LiveCodeShare - Live Room",
@@ -23,10 +24,11 @@ export default async function RoomPage({ params }: RoomPageProps) {
   const { id: roomId } = await params;
 
   return (
-    <div className="flex flex-col h-screen">
-      <h1 className="text-2xl font-bold p-4">Room ID: {roomId}</h1>
-      <Header roomId={roomId} />
-      <CodeEditor roomId={roomId} />
-    </div>
+    <SocketProvider>
+      <div className="flex flex-col h-screen">
+        <Header roomId={roomId} />
+        <CodeEditor roomId={roomId} />
+      </div>
+    </SocketProvider>
   );
 }
