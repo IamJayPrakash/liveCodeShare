@@ -14,12 +14,13 @@ export const metadata = {
     images: ["/og-image.png"],
   },
 };
+
 interface RoomPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function RoomPage({ params }: RoomPageProps) {
-  const { id: roomId } = params;
+export default async function RoomPage({ params }: RoomPageProps) {
+  const { id: roomId } = await params;
 
   return (
     <div className="flex flex-col h-screen">
