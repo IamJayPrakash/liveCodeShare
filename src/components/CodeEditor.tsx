@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
+import { socket } from "@/lib/socket"; // adjust the import path if needed
 
 const languages = ["javascript", "python", "cpp", "html", "css"];
 
@@ -14,7 +15,7 @@ const boilerplate: Record<string, string> = {
 };
 
 interface CodeEditorProps {
-  roomId: string; // to be used later for socket sync
+  roomId: string;
 }
 
 export default function CodeEditor({ roomId }: CodeEditorProps) {
@@ -22,8 +23,28 @@ export default function CodeEditor({ roomId }: CodeEditorProps) {
   const [code, setCode] = useState(boilerplate["javascript"]);
 
   useEffect(() => {
-    setCode(boilerplate[language]);
-  }, [language]);
+    // Connect and join room
+    socket.connect();
+    socket.emit("join-room", roomId);
+
+    // Listen for code updates from server
+    socket.on("code-update", (newCode: string) => {
+      setCode(newCode);
+    });
+
+    // Cleanup on unmount
+    return () => {
+      socket.off("code-update");
+      socket.disconnect();
+    };
+  }, [roomId]);
+
+  // Emit code changes to server
+  const handleEditorChange = (value: string | undefined) => {
+    const updatedCode = value || "";
+    setCode(updatedCode);
+    socket.emit("code-change", { roomId, code: updatedCode });
+  };
 
   return (
     <div className="flex flex-col gap-4 p-4 h-full">
@@ -31,7 +52,11 @@ export default function CodeEditor({ roomId }: CodeEditorProps) {
         <select
           className="p-2 border rounded bg-black text-white"
           value={language}
-          onChange={(e) => setLanguage(e.target.value)}
+          onChange={(e) => {
+            const selectedLang = e.target.value;
+            setLanguage(selectedLang);
+            setCode(boilerplate[selectedLang]);
+          }}
         >
           {languages.map((lang) => (
             <option key={lang} value={lang}>
@@ -47,7 +72,7 @@ export default function CodeEditor({ roomId }: CodeEditorProps) {
         theme="vs-dark"
         language={language}
         value={code}
-        onChange={(value) => setCode(value || "")}
+        onChange={handleEditorChange}
         options={{
           fontSize: 14,
           minimap: { enabled: false },
