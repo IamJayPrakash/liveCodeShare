@@ -1,0 +1,44 @@
+frontend:
+  - 'src/app/**/*'
+  - 'src/components/**/*'
+  - 'src/styles/**/*'
+  - 'public/**/*'
+
+backend:
+  - 'socket-server/**/*'
+
+context:
+  - 'src/context/**/*'
+
+hooks:
+  - 'src/hooks/**/*'
+
+lib:
+  - 'src/lib/**/*'
+
+types:
+  - 'src/types/**/*'
+
+tests:
+  - 'src/tests/**/*'
+  - '**/*.test.*'
+
+config:
+  - '.eslintrc.json'
+  - '.prettierrc'
+  - 'tailwind.config.ts'
+  - 'postcss.config.mjs'
+  - 'eslint.config.mjs'
+  - 'tsconfig.json'
+  - 'next.config.ts'
+  - 'jest.config.js'
+  - 'jest.setup.js'
+  - 'nodemon.json'
+  - 'next-env.d.ts'
+
+docs:
+  - '**/*.md'
+
+env:
+  - '.env'
+  - '.env.*'
