@@ -1,0 +1,25 @@
+# CODEOWNERS for LiveCodeShare
+
+# Frontend (Next.js app)
+src/app/ @IamJayPrakash
+src/components/ @IamJayPrakash
+src/styles/ @IamJayPrakash
+
+# Backend (Socket server)
+socket-server/ @IamJayPrakash
+
+# Context, hooks, types
+src/context/ @IamJayPrakash
+src/hooks/ @IamJayPrakash
+src/types/ @IamJayPrakash
+src/lib/ @IamJayPrakash
+
+# Tests
+src/tests/ @IamJayPrakash
+
+# Global config files
+*.json @IamJayPrakash
+*.ts @IamJayPrakash
+*.tsx @IamJayPrakash
+*.md @IamJayPrakash
+.env* @IamJayPrakash
