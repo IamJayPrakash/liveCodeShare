@@ -13,13 +13,11 @@ export const metadata: Metadata = {
   },
 };
 
-// Define proper props type according to Next.js Page format
-type Props = {
-  params: { id: string };
-  searchParams: Record<string, string | string[] | undefined>;
-};
-
-export default function RoomPage({ params }: Props) {
-  const { id: roomId } = params;
+export default async function RoomPage({
+  params,
+}: {
+  readonly params: { readonly id: string };
+}) {
+  const roomId = params.id;
   return <RoomPageClient roomId={roomId} />;
 }
