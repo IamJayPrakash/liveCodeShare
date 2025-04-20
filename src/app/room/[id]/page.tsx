@@ -1,71 +1,25 @@
-"use client";
+import { Metadata } from "next";
+import RoomPageClient from "@/components/RoomPageClient";
 
-import React, { useEffect, useState } from 'react';
-import CodeEditor from '@/components/CodeEditor';
-import { UsersList } from '@/components/collaboration/UsersList';
-import { UserCursor } from '@/components/collaboration/UserCursor';
-import { useCollaboration } from '@/hooks/useCollaboration';
-import { socket } from '@/lib/socket';
-import { toast } from '@/components/ui/use-toast';
-import { Header } from '@/components/Header';
-import { AppLayout } from '@/components/layout/AppLayout';
+export const metadata: Metadata = {
+  title: "LiveCodeShare - Live Room",
+  description: "Collaborate in real-time with others in this code room.",
+  openGraph: {
+    title: "LiveCodeShare Room",
+    description: "Join a live coding session and collaborate instantly.",
+    url: "https://livecodeshare.vercel.app",
+    type: "website",
+    images: ["/og-image.png"],
+  },
+};
 
-export default function RoomPage({ params }: { readonly params: { readonly id: string } }) {
-  const { id: roomId } = params;
-  const { users, currentUser, cursors } = useCollaboration(roomId); // Removed generic types
-  const [connected, setConnected] = useState(false);
+// Update the type definition to match what Next.js expects
+interface RoomPageProps {
+  params: { id: string };
+}
 
-  useEffect(() => {
-    const onConnect = () => {
-      setConnected(true);
-      toast({
-        title: "Connected!",
-        description: "You are now connected to the room",
-      });
-    };
-
-    const onDisconnect = () => {
-      setConnected(false);
-      toast({
-        title: "Disconnected",
-        description: "Lost connection to the server",
-        variant: "destructive",
-      });
-    };
-
-    socket.on("connect", onConnect);
-    socket.on("disconnect", onDisconnect);
-
-    if (socket.connected) {
-      setConnected(true);
-    }
-
-    return () => {
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
-    };
-  }, []);
-
-  return (
-    <AppLayout>
-      <Header roomId={roomId} userCount={users.length} />
-      <CodeEditor roomId={roomId} />
-      
-      {/* User collaboration UI */}
-      <UsersList users={users} />
-      
-      {/* Render other users' cursors */}
-      {Object.entries(cursors).map(([userId, position]) => {
-        const user = users.find((u) => u.id === userId);
-        if (!user || (currentUser?.id && user.id === currentUser.id)) return null;
-        return <UserCursor key={userId} user={user} position={position} />;
-      })}
-      
-      {/* Connection status indicator */}
-      <div className={`fixed bottom-6 right-6 h-3 w-3 rounded-full transition-colors ${connected ? 'bg-green-500' : 'bg-red-500'} shadow-lg`}>
-        <span className="sr-only">{connected ? 'Connected' : 'Disconnected'}</span>
-        <span className="absolute -inset-0.5 rounded-full animate-ping opacity-75 bg-current" />
-      </div>
-    </AppLayout>
-  );
+// Remove the await from the function parameters and use it inside the function
+export default async function RoomPage({ params }: RoomPageProps) {
+  const roomId = params.id;
+  return <RoomPageClient roomId={roomId} />;
 }
