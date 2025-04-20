@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Play, Download, Copy } from "lucide-react";
 import { LanguageBadge } from "./LanguageBadge";
 import { useToast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
 
 const LANGUAGES = [
   { id: "javascript", name: "JavaScript", extension: "js" },
@@ -35,19 +34,25 @@ const BOILERPLATE = {
   rust: `// Rust Example\n\nfn main() {\n  println!("Hello, World!");\n}\n`,
 };
 
-const CodeEditor = ({ roomId }) => {
-  const [language, setLanguage] = useState("javascript");
+const CodeEditor = ({ roomId }: { roomId: string }) => {
+  const [language, setLanguage] = useState<"html" | "javascript" | "typescript" | "python" | "css" | "cpp" | "csharp" | "go" | "rust">("javascript");
   const [code, setCode] = useState(BOILERPLATE.javascript);
-  const [isTyping, setIsTyping] = useState(false);
+  // Removed unused isTyping state
   const [output, setOutput] = useState("");
   const { toast } = useToast();
   
   // Function to handle language change
-  const handleLanguageChange = (newLanguage) => {
-    socket.emit("language-change", { roomId, language: newLanguage });
-    setLanguage(newLanguage);
+  interface LanguageChangePayload {
+    roomId: string;
+    language: string;
+  }
+
+  const handleLanguageChange = (newLanguage: string) => {
+    const payload: LanguageChangePayload = { roomId, language: newLanguage };
+    socket.emit("language-change", payload);
+    setLanguage(newLanguage as typeof language);
     if (!code || code === BOILERPLATE[language]) {
-      setCode(BOILERPLATE[newLanguage]);
+      setCode(BOILERPLATE[newLanguage as keyof typeof BOILERPLATE]);
     }
   };
 
@@ -57,9 +62,7 @@ const CodeEditor = ({ roomId }) => {
     socket.emit("join-room", roomId);
     
     socket.on("code-update", (newCode) => {
-      if (!isTyping) {
-        setCode(newCode);
-      }
+      setCode(newCode);
     });
 
     socket.on("language-update", (newLanguage) => {
@@ -71,13 +74,19 @@ const CodeEditor = ({ roomId }) => {
       socket.off("language-update");
       socket.disconnect();
     };
-  }, [roomId, isTyping]);
+  }, [roomId]);
 
   // Handle code changes
-  const handleEditorChange = (value) => {
+  interface CodeChangePayload {
+    roomId: string;
+    code: string;
+  }
+
+  const handleEditorChange = (value: string | undefined): void => {
     const updatedCode = value || "";
     setCode(updatedCode);
-    socket.emit("code-change", { roomId, code: updatedCode });
+    const payload: CodeChangePayload = { roomId, code: updatedCode };
+    socket.emit("code-change", payload);
   };
 
   // Function to run code (simulated)
@@ -131,7 +140,7 @@ const CodeEditor = ({ roomId }) => {
                 {LANGUAGES.map((lang) => (
                   <SelectItem key={lang.id} value={lang.id}>
                     <div className="flex items-center gap-2">
-                      <LanguageBadge language={lang.id} />
+                      <LanguageBadge language={lang.id as "javascript" | "typescript" | "python" | "html" | "css" | "cpp" | "csharp" | "go" | "rust"} />
                       <span>{lang.name}</span>
                     </div>
                   </SelectItem>

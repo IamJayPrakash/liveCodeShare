@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-export function UserCursor({ user, position }) {
+interface UserCursorProps {
+  readonly user: { readonly name: string; readonly color?: string };
+  readonly position: { readonly x: number; readonly y: number } | null;
+}
+
+export function UserCursor({ user, position }: UserCursorProps) {
   if (!position) return null;
   
   return (

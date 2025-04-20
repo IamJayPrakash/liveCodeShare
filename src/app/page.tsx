@@ -20,7 +20,7 @@ export default function Home() {
     router.push(`/room/${roomId}`);
   };
 
-  const joinRoom = (e) => {
+  const joinRoom = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (roomInput.trim()) {
       router.push(`/room/${roomInput.trim()}`);
@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <Header />
+      <Header userCount={0} />
       
       <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24">
         <motion.div

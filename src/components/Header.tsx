@@ -4,7 +4,12 @@ import {  Users } from 'lucide-react';
 import { ShareRoomButton } from './ShareRoomButtton';
 import { ThemeToggle } from './theme/ThemeToggle';
 
-export function Header({ roomId, userCount }) {
+interface HeaderProps {
+  readonly roomId?: string;
+  readonly userCount: number;
+}
+
+export function Header({ roomId, userCount }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">

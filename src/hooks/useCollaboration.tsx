@@ -3,17 +3,35 @@ import { socket } from '@/lib/socket';
 import { faker } from '@faker-js/faker';
 import { v4 as uuidv4 } from 'uuid';
 
-export function useCollaboration(roomId) {
-  const [users, setUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [cursors, setCursors] = useState({});
+interface User {
+  id: string;
+  name: string;
+  avatar: string;
+  color: string;
+  active: boolean;
+}
+
+interface CursorPosition {
+  x: number;
+  y: number;
+}
+
+interface CursorUpdate {
+  userId: string;
+  position: CursorPosition;
+}
+
+export function useCollaboration(roomId: string) {
+  const [users, setUsers] = useState<User[]>([]);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [cursors, setCursors] = useState<Record<string, CursorPosition>>({});
   
   useEffect(() => {
     if (!roomId) return;
     
     // Create current user on mount
     const userId = uuidv4();
-    const newUser = {
+    const newUser: User = {
       id: userId,
       name: faker.person.firstName() + ' ' + faker.person.lastName().charAt(0),
       avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${userId}`,
@@ -27,17 +45,17 @@ export function useCollaboration(roomId) {
     socket.emit('join-room', { roomId, user: newUser });
     
     // Listen for user events
-    socket.on('users-update', (updatedUsers) => {
+    socket.on('users-update', (updatedUsers: User[]) => {
       setUsers(updatedUsers);
     });
     
-    socket.on('cursor-move', ({ userId, position }) => {
+    socket.on('cursor-move', ({ userId, position }: CursorUpdate) => {
       setCursors(prev => ({ ...prev, [userId]: position }));
     });
     
     // Mouse move handler to broadcast cursor position
-    const handleMouseMove = (event) => {
-      const position = { x: event.clientX, y: event.clientY };
+    const handleMouseMove = (event: MouseEvent) => {
+      const position: CursorPosition = { x: event.clientX, y: event.clientY };
       socket.emit('cursor-update', { roomId, userId: newUser.id, position });
     };
     
@@ -45,7 +63,7 @@ export function useCollaboration(roomId) {
     let lastEmitTime = 0;
     const throttleTime = 50; // ms
     
-    const throttledMouseMove = (event) => {
+    const throttledMouseMove = (event: MouseEvent) => {
       const now = Date.now();
       if (now - lastEmitTime > throttleTime) {
         handleMouseMove(event);

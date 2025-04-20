@@ -2,7 +2,7 @@ import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Toaster } from '@/components/ui/toaster';
 
 export const AppLayout = ({ children }: { children: React.ReactNode }) => {
-  const [toasts, setToasts] = useState([]); // Initialize toasts state
+  const [toasts] = useState([]); // Initialize toasts state
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="livecode-theme">
@@ -21,8 +21,9 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import {  Users } from 'lucide-react';
+import { ShareRoomButton } from '../ShareRoomButtton';
 
-export function Header({ roomId, userCount }) {
+export function Header({ roomId, userCount }: Readonly<{ roomId?: string; userCount: number }>) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">

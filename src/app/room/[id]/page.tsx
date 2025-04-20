@@ -10,9 +10,9 @@ import { toast } from '@/components/ui/use-toast';
 import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
 
-export default function RoomPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id: roomId } = React.use(params); // Unwrap the params object
-  const { users, currentUser, cursors } = useCollaboration(roomId);
+export default function RoomPage({ params }: { readonly params: { readonly id: string } }) {
+  const { id: roomId } = params;
+  const { users, currentUser, cursors } = useCollaboration(roomId); // Removed generic types
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
@@ -56,8 +56,8 @@ export default function RoomPage({ params }: { params: Promise<{ id: string }> }
       
       {/* Render other users' cursors */}
       {Object.entries(cursors).map(([userId, position]) => {
-        const user = users.find(u => u.id === userId);
-        if (!user || user.id === currentUser?.id) return null;
+        const user = users.find((u) => u.id === userId);
+        if (!user || (currentUser?.id && user.id === currentUser.id)) return null;
         return <UserCursor key={userId} user={user} position={position} />;
       })}
       

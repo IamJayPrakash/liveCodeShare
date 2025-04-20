@@ -1,15 +1,31 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { ReactNode } from "react";
 
-const ThemeProviderContext = createContext({});
+interface ThemeProviderValue {
+  theme: string;
+  setTheme: (theme: string) => void;
+}
+
+const ThemeProviderContext = createContext<ThemeProviderValue>({
+  theme: "system",
+  setTheme: () => {},
+});
+
+interface ThemeProviderProps {
+  children: ReactNode;
+  defaultTheme?: string;
+  storageKey?: string;
+  [key: string]: unknown;
+}
 
 export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
   ...props
-}) {
+}: ThemeProviderProps) {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
       return localStorage.getItem(storageKey) || defaultTheme;
@@ -35,9 +51,9 @@ export function ThemeProvider({
     root.classList.add(theme);
   }, [theme]);
 
-  const value = {
+  const value: ThemeProviderValue = {
     theme,
-    setTheme: (theme) => {
+    setTheme: (theme: string) => {
       localStorage.setItem(storageKey, theme);
       setTheme(theme);
     },

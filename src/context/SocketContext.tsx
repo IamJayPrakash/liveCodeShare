@@ -1,25 +1,25 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { socket } from "@/lib/socket";
 
-const SocketContext = createContext(null);
+import type { Socket } from "socket.io-client";
 
-export function SocketProvider({ children }) {
-  const [isConnected, setIsConnected] = useState(false);
+const SocketContext = createContext<Socket | null>(null);
 
+import type { ReactNode } from "react";
+
+export function SocketProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     function onConnect() {
       console.log("Socket connected");
-      setIsConnected(true);
     }
 
     function onDisconnect() {
       console.log("Socket disconnected");
-      setIsConnected(false);
     }
 
-    function onError(error) {
+    function onError(error: Error): void {
       console.error("Socket error:", error);
     }
 

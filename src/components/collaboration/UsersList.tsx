@@ -3,7 +3,14 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export function UsersList({ users = [] }) {
+interface User {
+  id: string;
+  name: string;
+  avatar: string;
+  active: boolean;
+}
+
+export function UsersList({ users = [] }: { users: User[] }) {
   return (
     <div className="fixed bottom-6 left-6 z-40">
       <div className="rounded-full bg-card p-1.5 border shadow-lg">

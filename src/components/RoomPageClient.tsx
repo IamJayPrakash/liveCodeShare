@@ -26,7 +26,7 @@ const RoomPageClient = ({ roomId }: RoomPageClientProps) => {
 
   return (
     <div className="flex flex-col h-screen">
-      <Header roomId={roomId} />
+      <Header roomId={roomId} userCount={0} />
       <RoomInfo />
       <UserAvatar />
       <UserAvatar />
