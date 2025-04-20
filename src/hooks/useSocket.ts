@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { SocketContext } from "@/context/SocketContext";
+import { useEffect } from 'react';
+import { socket } from '@/lib/socket';
 
-export const useSocket = () => {
-  const context = useContext(SocketContext);
-  const [socket, setSocket] = useState(context);
-
+export function useSocket() {
   useEffect(() => {
-    if (context) {
-      setSocket(context);
-    }
-  }, [context]);
+    socket.on('connect', () => {});
+    socket.on('disconnect', () => {});
+
+    return () => {
+      socket.off('connect', () => {});
+      socket.off('disconnect', () => {});
+    };
+  }, []);
 
   return socket;
-};
+}

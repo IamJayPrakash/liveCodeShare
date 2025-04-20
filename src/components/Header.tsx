@@ -1,18 +1,47 @@
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import {  Users } from 'lucide-react';
+import { ShareRoomButton } from './ShareRoomButtton';
+import { ThemeToggle } from './theme/ThemeToggle';
 
-type HeaderProps = {
-  roomId: string;
-};
+interface HeaderProps {
+  readonly roomId?: string;
+  readonly userCount: number;
+}
 
-export const Header = ({ roomId }: HeaderProps) => {
+export function Header({ roomId, userCount }: HeaderProps) {
   return (
-    <header className="bg-zinc-800 text-white px-6 py-4 flex justify-between items-center">
-      <Link href="/" className="text-xl font-bold">
-        LiveCodeShare
-      </Link>
-      <div className="text-sm text-zinc-400">
-        Room ID: <span className="font-mono">{roomId}</span>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="rounded-md bg-primary p-1">
+              <code className="text-md font-semibold text-primary-foreground">&lt;/&gt;</code>
+            </div>
+            <span className="hidden font-bold sm:inline-block">LiveCodeShare</span>
+          </Link>
+          {roomId && (
+            <div className="ml-4 flex items-center space-x-2">
+              <div className="hidden rounded-full border px-3 py-1 text-xs text-muted-foreground md:block">
+                Room: <span className="font-mono font-medium text-foreground">{roomId}</span>
+              </div>
+              {userCount > 0 && (
+                <div className="flex items-center space-x-1 rounded-full border px-3 py-1 text-xs">
+                  <Users size={12} />
+                  <span>{userCount}</span>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        
+        <div className="flex items-center gap-2">
+          {roomId && (
+            <ShareRoomButton roomId={roomId} />
+          )}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
-};
+}

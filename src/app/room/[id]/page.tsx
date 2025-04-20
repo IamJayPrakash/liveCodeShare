@@ -13,11 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
-interface RoomPageProps {
-  readonly params: Promise<{ id: string }>;
-}
-
-export default async function RoomPage({ params }: RoomPageProps) {
-  const { id: roomId } = await params;
-  return <RoomPageClient roomId={roomId} />;
+// ✅ Await the params inside the async component
+export default async function RoomPage(props: { params: Promise<{ id: string }> }) {
+  const { id } = await props.params;
+  return <RoomPageClient roomId={id} />;
 }
