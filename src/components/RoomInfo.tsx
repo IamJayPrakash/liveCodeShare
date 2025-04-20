@@ -3,29 +3,28 @@ import { useState, useEffect } from 'react';
 
 const RoomInfo = () => {
   const [userCount, setUserCount] = useState(0);
-  const socket = useSocket(); // Use the socket from context
+  const socket = useSocket();
 
   useEffect(() => {
     if (!socket) return;
   
-    socket.on('user-joined', () => {
-      setUserCount((prevCount) => prevCount + 1);
-    });
-  
-    socket.on('user-left', () => {
-      setUserCount((prevCount) => prevCount - 1);
+    // Listen for direct user count updates
+    socket.on('user-count', (count: number) => {
+      setUserCount(count);
     });
   
     return () => {
-      socket.off('user-joined');
-      socket.off('user-left');
+      socket.off('user-count');
     };
   }, [socket]);
   
-
   return (
-    <div className="room-info">
-      <p className="text-sm text-gray-400">People in this room: {userCount}</p>
+    <div className="room-info p-2 text-sm bg-gray-800 border-b border-gray-700">
+      <p className="text-gray-400">
+        {userCount === 1 
+          ? "You're the only one here" 
+          : `${userCount} people in this room`}
+      </p>
     </div>
   );
 };

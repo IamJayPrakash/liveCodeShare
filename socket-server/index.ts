@@ -10,20 +10,13 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    // Define allowed origins more specifically in production
-    origin: process.env.NODE_ENV === "production" 
-      ? ["https://livecodeshare.vercel.app"] 
-      : ["http://localhost:3000"],
+    origin: "*",
     methods: ["GET", "POST"],
-    credentials: true
   },
-  pingTimeout: 60000,
 });
 
-// Add a basic route to check if server is running
-app.get('/', (req, res) => {
-  res.send('Socket.io server is running');
-});
+// Track users in rooms
+const roomUsers: { [roomId: string]: Set<string> } = {};
 
 io.on("connection", (socket) => {
   console.log("User connected", socket.id);
@@ -32,13 +25,19 @@ io.on("connection", (socket) => {
     socket.join(roomId);
     console.log(`User ${socket.id} joined room ${roomId}`);
     
-    // Notify others in the room
+    // Initialize room if it doesn't exist
+    if (!roomUsers[roomId]) {
+      roomUsers[roomId] = new Set();
+    }
+    
+    // Add user to room
+    roomUsers[roomId].add(socket.id);
+    
+    // Emit to others that user joined
     socket.to(roomId).emit("user-joined", socket.id);
     
-    // Get current users in room
-    const clients = io.sockets.adapter.rooms.get(roomId);
-    const numClients = clients ? clients.size : 0;
-    io.to(roomId).emit("room-users", numClients);
+    // Emit current user count to everyone in the room
+    io.to(roomId).emit("user-count", roomUsers[roomId].size);
   });
 
   socket.on("code-change", ({ roomId, code }) => {
@@ -47,13 +46,29 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
-    // You could also emit a user-left event here if needed
+    
+    // Find which rooms this user was in
+    for (const [roomId, users] of Object.entries(roomUsers)) {
+      if (users.has(socket.id)) {
+        users.delete(socket.id);
+        
+        // Emit to others that user left
+        socket.to(roomId).emit("user-left", socket.id);
+        
+        // Emit updated user count
+        io.to(roomId).emit("user-count", users.size);
+        
+        // Clean up empty rooms
+        if (users.size === 0) {
+          delete roomUsers[roomId];
+        }
+      }
+    }
   });
 });
 
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`Socket server running on http://localhost:${PORT}`);
+server.listen(3001, () => {
+  console.log("Socket server running on http://localhost:3001");
 });
 
 export default app;
