@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Share2, Check, Copy } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
 
 interface ShareRoomButtonProps {
   readonly roomId: string;
@@ -9,17 +8,17 @@ interface ShareRoomButtonProps {
 
 export function ShareRoomButton({ roomId }: ShareRoomButtonProps) {
   const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
+  // const { toast } = useToast();
 
   const handleShareClick = () => {
     const roomUrl = `${window.location.origin}/room/${roomId}`;
     navigator.clipboard.writeText(roomUrl).then(() => {
       setCopied(true);
-      toast({
-        title: "Link copied!",
-        description: "Room URL has been copied to clipboard",
-        // duration: 2000, // Removed as it is not a valid property
-      });
+      // toast({
+      //   title: "Link copied!",
+      //   description: "Room URL has been copied to clipboard",
+      //   // duration: 2000, // Removed as it is not a valid property
+      // });
       setTimeout(() => setCopied(false), 2000);
     });
   };

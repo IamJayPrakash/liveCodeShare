@@ -1,8 +1,6 @@
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
-import { Toaster } from '@/components/ui/toaster';
 
 export const AppLayout = ({ children }: { children: React.ReactNode }) => {
-  const [toasts] = useState([]); // Initialize toasts state
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="livecode-theme">
@@ -11,13 +9,11 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
           {children}
         </main>
       </div>
-      <Toaster toasts={toasts} />
     </ThemeProvider>
   );
 };
 
 // components/layout/Header.jsx
-import React, { useState } from 'react';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import {  Users } from 'lucide-react';

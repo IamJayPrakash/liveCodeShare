@@ -6,7 +6,6 @@ import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Button } from "@/components/ui/button";
 import { Play, Download, Copy } from "lucide-react";
 import { LanguageBadge } from "./LanguageBadge";
-import { useToast } from "@/components/ui/use-toast";
 
 const LANGUAGES = [
   { id: "javascript", name: "JavaScript", extension: "js" },
@@ -39,7 +38,6 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   const [code, setCode] = useState(BOILERPLATE.javascript);
   // Removed unused isTyping state
   const [output, setOutput] = useState("");
-  const { toast } = useToast();
   
   // Function to handle language change
   interface LanguageChangePayload {
@@ -92,10 +90,10 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   // Function to run code (simulated)
   const runCode = () => {
     setOutput(`Running ${language.toUpperCase()} code...\n\n> Hello, World!`);
-    toast({
-      title: "Code Execution",
-      description: `Started running ${language.toUpperCase()} code`,
-    });
+    // toast({
+    //   title: "Code Execution",
+    //   description: `Started running ${language.toUpperCase()} code`,
+    // });
   };
 
   // Function to download code
@@ -112,19 +110,19 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    toast({
-      title: "Download Complete",
-      description: `File saved as code.${extension}`,
-    });
+    // toast({
+    //   title: "Download Complete",
+    //   description: `File saved as code.${extension}`,
+    // });
   };
 
   // Function to copy code
   const copyCode = () => {
     navigator.clipboard.writeText(code);
-    toast({
-      title: "Code Copied",
-      description: "Code has been copied to clipboard",
-    });
+    // toast({
+    //   title: "Code Copied",
+    //   description: "Code has been copied to clipboard",
+    // });
   };
 
   return (
