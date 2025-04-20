@@ -1,0 +1,30 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Hello and welcome to **LiveCodeShare**!
+
+            Thanks for opening your first issue 🎉  
+            LiveCodeShare is a real-time code sharing platform like [CodeShare.io](https://livecodeshare.vercel.app/room/1).  
+            We appreciate your interest — feel free to suggest new features, report bugs, or ask questions.
+
+            Let's build something awesome together! 🚀
+          pr-message: |
+            🎉 Hey there! Thanks for submitting your first pull request to **LiveCodeShare**!
+
+            This is a real-time collaborative coding platform ([Try it here](https://livecodeshare.vercel.app/room/1)).
+
+            We're excited to have you contribute. The maintainers will review your PR soon — stay tuned!
+
+            Happy coding 💻✨
