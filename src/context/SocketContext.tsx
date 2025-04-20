@@ -1,34 +1,50 @@
 "use client";
 
-import React, { createContext, useEffect, useState } from "react";
-import { io, Socket } from "socket.io-client";
-import { toast } from "sonner";
+import { createContext, useContext, useEffect, useState } from "react";
+import { socket } from "@/lib/socket";
 
-const SocketContext = createContext<Socket | null>(null);
+const SocketContext = createContext(null);
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL ?? "http://localhost:3001";
-
-export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
-  const [socket, setSocket] = useState<Socket | null>(null);
+export function SocketProvider({ children }) {
+  const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    const socketInstance = io(SOCKET_URL, { autoConnect: false });
+    function onConnect() {
+      console.log("Socket connected");
+      setIsConnected(true);
+    }
 
-    setSocket(socketInstance);
+    function onDisconnect() {
+      console.log("Socket disconnected");
+      setIsConnected(false);
+    }
 
-    socketInstance.on("user-joined", (userId) => {
-      toast.success(`${userId} has joined the room!`);
-    });
+    function onError(error) {
+      console.error("Socket error:", error);
+    }
+
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
+    socket.on("connect_error", onError);
 
     return () => {
-      socketInstance.disconnect();
-      socketInstance.off("user-joined");
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.off("connect_error", onError);
     };
   }, []);
 
   return (
-    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+    <SocketContext.Provider value={socket}>
+      {children}
+    </SocketContext.Provider>
   );
-};
+}
 
-export { SocketContext };
+export const useSocket = () => {
+  const context = useContext(SocketContext);
+  if (context === undefined) {
+    throw new Error("useSocket must be used within a SocketProvider");
+  }
+  return context;
+}
