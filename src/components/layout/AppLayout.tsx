@@ -1,8 +1,26 @@
-import React from 'react';
+import { ThemeProvider } from '@/components/theme/ThemeProvider';
+import { Toaster } from '@/components/ui/toaster';
+
+export const AppLayout = ({ children }: { children: React.ReactNode }) => {
+  const [toasts, setToasts] = useState([]); // Initialize toasts state
+
+  return (
+    <ThemeProvider defaultTheme="dark" storageKey="livecode-theme">
+      <div className="min-h-screen bg-background font-sans antialiased">
+        <main className="flex min-h-screen flex-col">
+          {children}
+        </main>
+      </div>
+      <Toaster toasts={toasts} />
+    </ThemeProvider>
+  );
+};
+
+// components/layout/Header.jsx
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import {  Users } from 'lucide-react';
-import { ShareRoomButton } from './ShareRoomButtton';
-import { ThemeToggle } from './theme/ThemeToggle';
 
 export function Header({ roomId, userCount }) {
   return (
