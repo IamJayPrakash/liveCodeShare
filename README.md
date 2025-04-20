@@ -1,7 +1,3 @@
-<p align="center">
-  <!-- Demo animation GIF -->
-  <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="LiveCodeShare Demo" width="80%" />
-</p>
 
 <h1 align="center">🚀 LiveCodeShare</h1>
 <p align="center">
@@ -121,7 +117,10 @@ npm run test:coverage
 
 ## 📄 License
 
-MIT © Jay Prakash
+<p align="center">
+  <!-- Demo animation GIF -->
+  <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="LiveCodeShare Demo" width="80%" />
+</p>
 
 ---
 
