@@ -1,0 +1,61 @@
+# 📊 CodeQL Advanced Security Workflow
+# This workflow automatically runs CodeQL analysis on push, PR, and a weekly schedule.
+# It is customized for the LiveCodeShare project (https://github.com/IamJayPrakash/liveCodeShare).
+
+name: "CodeQL Advanced"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '20 18 * * 0' # Runs every Sunday at 18:20 UTC
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+          - language: javascript-typescript
+            build-mode: none
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Optional: Setup Node.js environment for custom builds (if needed in future)
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          # queries: +security-extended,security-and-quality # optional custom queries
+
+      # Manual build logic placeholder (not needed with build-mode: none)
+      - if: matrix.build-mode == 'manual'
+        shell: bash
+        run: |
+          echo 'Replace this section with build commands if build-mode is set to manual.'
+          exit 1
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
