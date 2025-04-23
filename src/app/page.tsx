@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Code, Globe, Users } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
+import { Footer } from '@/components/Footer';
 
 export default function Home() {
   const [roomInput, setRoomInput] = useState('');
@@ -141,6 +142,7 @@ export default function Home() {
           </Card>
         </motion.div>
       </div>
+  <Footer />
     </AppLayout>
   );
 }
