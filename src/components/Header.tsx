@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {  Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 import { ShareRoomButton } from './ShareRoomButtton';
 import { ThemeToggle } from './theme/ThemeToggle';
 
@@ -20,6 +20,8 @@ export function Header({ roomId, userCount }: HeaderProps) {
             </div>
             <span className="hidden font-bold sm:inline-block">LiveCodeShare</span>
           </Link>
+
+
           {roomId && (
             <div className="ml-4 flex items-center space-x-2">
               <div className="hidden rounded-full border px-3 py-1 text-xs text-muted-foreground md:block">
@@ -34,11 +36,14 @@ export function Header({ roomId, userCount }: HeaderProps) {
             </div>
           )}
         </div>
-        
+
         <div className="flex items-center gap-2">
           {roomId && (
             <ShareRoomButton roomId={roomId} />
           )}
+          <Link href="/help" className="hidden font-bold sm:inline-block">
+            How to use?
+          </Link>
           <ThemeToggle />
         </div>
       </div>
