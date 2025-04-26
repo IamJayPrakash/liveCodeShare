@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { defaultMetadata, getWebsiteSchema, getOrganizationSchema } from '@/lib/metaData';
+
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { SocketProvider } from "@/context/SocketContext";
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"),
-  title: "LiveCodeShare",
-  description: "Real-time code sharing platform like CodeShare.io",
-};
+
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
@@ -21,6 +22,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebsiteSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getOrganizationSchema()),
+          }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SocketProvider>
         <ThemeProvider defaultTheme="dark" storageKey="livecode-theme">
@@ -32,6 +47,7 @@ export default function RootLayout({
     </ThemeProvider>
         </SocketProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
