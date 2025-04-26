@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
                 us at:
               </p>
               <p className="flex flex-col gap-1">
-                <label>Email: [Insert contact email]</label>
+                <label>Email: livecodeshare@gmail.com</label>
                 <label>Website: https://livecodeshare.vercel.app/</label>
               </p>
             </div>
