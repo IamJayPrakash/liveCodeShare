@@ -227,7 +227,7 @@ export default function ContactPage() {
                       asChild
                     >
                       <a 
-                        href="https://github.com/livecodeshare/issues" 
+                        href="https://github.com/iamjayprakash/livecodeshare/issues" 
                         target="_blank" 
                         rel="noopener noreferrer"
                       >

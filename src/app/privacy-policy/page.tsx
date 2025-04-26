@@ -22,9 +22,6 @@ export default function PrivacyPolicyPage() {
             <div className="text-center space-y-3">
               <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Privacy Policy</h1>
             </div>
-            <p className="text-xl text-muted-foreground">
-              <strong>Effective Date:</strong> [Insert Date]
-            </p>
             <p>
               Welcome to <strong>LiveCodeShare</strong>. Your privacy is
               important to us. This Privacy Policy explains how we collect, use, and protect your

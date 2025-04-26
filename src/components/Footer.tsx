@@ -32,7 +32,7 @@ export function Footer() {
               Contact
             </Link>
             <Link 
-              href="/privacy" 
+              href="/privacy-policy" 
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               Privacy
