@@ -23,10 +23,10 @@ export default function PrivacyPolicyPage() {
               <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Privacy Policy</h1>
             </div>
             <p className="text-xl text-muted-foreground">
-              <label className="font-bold">Effective Date:</label> [Insert Date]
+              <strong>Effective Date:</strong> [Insert Date]
             </p>
             <p>
-              Welcome to <label className="font-bold">LiveCodeShare</label>. Your privacy is
+              Welcome to <strong>LiveCodeShare</strong>. Your privacy is
               important to us. This Privacy Policy explains how we collect, use, and protect your
               personal information when you use our platform.
             </p>
@@ -37,15 +37,15 @@ export default function PrivacyPolicyPage() {
               <p>We may collect the following types of information:</p>
               <ul className="list-disc pl-5 md:pl-8">
                 <li>
-                  <label className="font-bold">Personal Information:</label> Name, email address,
+                  <strong>Personal Information:</strong> Name, email address,
                   and other details you provide when signing up or contacting us.
                 </li>
                 <li>
-                  <label className="font-bold">Usage Data:</label> Information on how you use the
+                  <strong>Usage Data:</strong> Information on how you use the
                   platform, including IP address, browser type, and device information.
                 </li>
                 <li>
-                  <label className="font-bold">Session Data:</label> Code snippets, room
+                  <strong>Session Data:</strong> Code snippets, room
                   interactions, and other data shared during collaborative sessions.
                 </li>
               </ul>
