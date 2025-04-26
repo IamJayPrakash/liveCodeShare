@@ -23,7 +23,7 @@ export default function HelpPage() {
                             LiveCodeShare allows you to create a room and share code with others in real-time.
                         </p>
                         <ul className="list-disc list-inside space-y-2">
-                            <li>Click "Create Room" to start a new session.</li>
+                            <li>Click Create Room to start a new session.</li>
                             <li>Share the room link with your friends or colleagues.</li>
                             <li>Collaborate and edit code together live!</li>
                         </ul>
