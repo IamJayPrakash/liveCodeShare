@@ -12,6 +12,7 @@ import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Button } from '@/components/ui/button';
 import { Play, Download, Copy } from 'lucide-react';
 import { LanguageBadge } from './LanguageBadge';
+import { toast } from 'sonner';
 
 const LANGUAGES = [
   { id: 'javascript', name: 'JavaScript', extension: 'js' },
@@ -127,10 +128,7 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   // Function to copy code
   const copyCode = () => {
     navigator.clipboard.writeText(code);
-    // toast({
-    //   title: "Code Copied",
-    //   description: "Code has been copied to clipboard",
-    // });
+    toast('Code copied to clipboard');
   };
 
   return (
