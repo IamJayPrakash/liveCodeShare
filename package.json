@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "test": "jest --watch",
     "test:coverage": "jest --coverage --passWithNoTests",
-    "dev:socket": "nodemon socket-server/index.ts"
+    "dev:socket": "nodemon --exec node socket-server/index.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.7.0",
