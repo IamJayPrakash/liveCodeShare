@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
@@ -28,22 +28,16 @@ export default function NotFound() {
               <FileX size={96} className="text-destructive" />
             </motion.div>
           </div>
-          
+
           <div className="space-y-3">
-            <h1 className="text-4xl font-bold tracking-tight">
-              404 - Room Not Found
-            </h1>
+            <h1 className="text-4xl font-bold tracking-tight">404 - Room Not Found</h1>
             <p className="text-muted-foreground">
               The coding room you&apos;re looking for doesn&apos;t exist or may have expired.
             </p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-            <Button 
-              onClick={() => router.push('/')}
-              className="gap-2"
-              size="lg"
-            >
+            <Button onClick={() => router.push('/')} className="gap-2" size="lg">
               <Home size={16} />
               Return Home
             </Button>

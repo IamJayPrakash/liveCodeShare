@@ -1,13 +1,10 @@
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 
 export const AppLayout = ({ children }: { children: React.ReactNode }) => {
-
   return (
     <ThemeProvider defaultTheme="dark" storageKey="livecode-theme">
       <div className="min-h-screen bg-background font-sans antialiased">
-        <main className="flex min-h-screen flex-col">
-          {children}
-        </main>
+        <main className="flex min-h-screen flex-col">{children}</main>
       </div>
     </ThemeProvider>
   );
@@ -16,7 +13,7 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
 // components/layout/Header.jsx
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
-import {  Users } from 'lucide-react';
+import { Users } from 'lucide-react';
 import { ShareRoomButton } from '../ShareRoomButtton';
 
 export function Header({ roomId, userCount }: Readonly<{ roomId?: string; userCount: number }>) {
@@ -44,11 +41,9 @@ export function Header({ roomId, userCount }: Readonly<{ roomId?: string; userCo
             </div>
           )}
         </div>
-        
+
         <div className="flex items-center gap-2">
-          {roomId && (
-            <ShareRoomButton roomId={roomId} />
-          )}
+          {roomId && <ShareRoomButton roomId={roomId} />}
           <ThemeToggle />
         </div>
       </div>

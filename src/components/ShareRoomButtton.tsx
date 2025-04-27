@@ -24,16 +24,20 @@ export function ShareRoomButton({ roomId }: ShareRoomButtonProps) {
   };
 
   return (
-    <Button 
-      variant="outline" 
-      size="sm" 
+    <Button
+      variant="outline"
+      size="sm"
       onClick={handleShareClick}
       className="gap-1.5 transition-all"
     >
       {copied ? (
         <>
           <Check size={14} className="text-green-500" />
-          <span className="text-xs"> <Copy/>Copied!</span>
+          <span className="text-xs">
+            {' '}
+            <Copy />
+            Copied!
+          </span>
         </>
       ) : (
         <>

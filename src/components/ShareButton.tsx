@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -9,12 +9,15 @@ const ShareButton = ({ roomId }: { roomId: string }) => {
   const handleShareClick = () => {
     const roomUrl = `${window.location.origin}/room/${roomId}`;
 
-    navigator.clipboard.writeText(roomUrl).then(() => {
-      setCopied(true);
-      toast.success('Room URL copied to clipboard!');
-    }).catch(() => {
-      toast.error('Failed to copy URL');
-    });
+    navigator.clipboard
+      .writeText(roomUrl)
+      .then(() => {
+        setCopied(true);
+        toast.success('Room URL copied to clipboard!');
+      })
+      .catch(() => {
+        toast.error('Failed to copy URL');
+      });
   };
 
   return (

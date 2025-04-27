@@ -21,7 +21,6 @@ export function Header({ roomId, userCount }: HeaderProps) {
             <span className="hidden font-bold sm:inline-block">LiveCodeShare</span>
           </Link>
 
-
           {roomId && (
             <div className="ml-4 flex items-center space-x-2">
               <div className="hidden rounded-full border px-3 py-1 text-xs text-muted-foreground md:block">
@@ -38,9 +37,7 @@ export function Header({ roomId, userCount }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          {roomId && (
-            <ShareRoomButton roomId={roomId} />
-          )}
+          {roomId && <ShareRoomButton roomId={roomId} />}
           <Link href="/help" className="hidden font-bold sm:inline-block">
             How to use?
           </Link>

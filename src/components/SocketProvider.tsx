@@ -1,4 +1,4 @@
-"use client"; // Add this at the top
+'use client'; // Add this at the top
 
 import React, { createContext, useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
@@ -13,7 +13,7 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const socketInstance = io(SOCKET_URL, { autoConnect: false });
-    console.log("Socket initialized:", socketInstance);
+    console.log('Socket initialized:', socketInstance);
     setSocket(socketInstance);
 
     socketInstance.on('user-joined', (userId) => {
@@ -26,10 +26,5 @@ export const SocketProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  
-  return (
-    <SocketContext.Provider value={socket}>
-      {children}
-    </SocketContext.Provider>
-  );
+  return <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>;
 };

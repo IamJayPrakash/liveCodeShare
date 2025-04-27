@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from "react";
-import Editor from "@monaco-editor/react";
-import { socket } from "@/lib/socket";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { Button } from "@/components/ui/button";
-import { Play, Download, Copy } from "lucide-react";
-import { LanguageBadge } from "./LanguageBadge";
+import React, { useEffect, useState } from 'react';
+import Editor from '@monaco-editor/react';
+import { socket } from '@/lib/socket';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { Button } from '@/components/ui/button';
+import { Play, Download, Copy } from 'lucide-react';
+import { LanguageBadge } from './LanguageBadge';
 
 const LANGUAGES = [
-  { id: "javascript", name: "JavaScript", extension: "js" },
-  { id: "typescript", name: "TypeScript", extension: "ts" },
-  { id: "python", name: "Python", extension: "py" },
-  { id: "html", name: "HTML", extension: "html" },
-  { id: "css", name: "CSS", extension: "css" },
-  { id: "java", name: "Java", extension: "java" },
-  { id: "cpp", name: "C++", extension: "cpp" },
-  { id: "csharp", name: "C#", extension: "cs" },
-  { id: "go", name: "Go", extension: "go" },
-  { id: "rust", name: "Rust", extension: "rs" },
+  { id: 'javascript', name: 'JavaScript', extension: 'js' },
+  { id: 'typescript', name: 'TypeScript', extension: 'ts' },
+  { id: 'python', name: 'Python', extension: 'py' },
+  { id: 'html', name: 'HTML', extension: 'html' },
+  { id: 'css', name: 'CSS', extension: 'css' },
+  { id: 'java', name: 'Java', extension: 'java' },
+  { id: 'cpp', name: 'C++', extension: 'cpp' },
+  { id: 'csharp', name: 'C#', extension: 'cs' },
+  { id: 'go', name: 'Go', extension: 'go' },
+  { id: 'rust', name: 'Rust', extension: 'rs' },
 ];
 
 const BOILERPLATE = {
@@ -34,11 +40,13 @@ const BOILERPLATE = {
 };
 
 const CodeEditor = ({ roomId }: { roomId: string }) => {
-  const [language, setLanguage] = useState<"html" | "javascript" | "typescript" | "python" | "css" | "cpp" | "csharp" | "go" | "rust">("javascript");
+  const [language, setLanguage] = useState<
+    'html' | 'javascript' | 'typescript' | 'python' | 'css' | 'cpp' | 'csharp' | 'go' | 'rust'
+  >('javascript');
   const [code, setCode] = useState(BOILERPLATE.javascript);
   // Removed unused isTyping state
-  const [output, setOutput] = useState("");
-  
+  const [output, setOutput] = useState('');
+
   // Function to handle language change
   interface LanguageChangePayload {
     roomId: string;
@@ -47,7 +55,7 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
 
   const handleLanguageChange = (newLanguage: string) => {
     const payload: LanguageChangePayload = { roomId, language: newLanguage };
-    socket.emit("language-change", payload);
+    socket.emit('language-change', payload);
     setLanguage(newLanguage as typeof language);
     if (!code || code === BOILERPLATE[language]) {
       setCode(BOILERPLATE[newLanguage as keyof typeof BOILERPLATE]);
@@ -57,19 +65,19 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   // Connect to socket and listen for changes
   useEffect(() => {
     socket.connect();
-    socket.emit("join-room", roomId);
-    
-    socket.on("code-update", (newCode) => {
+    socket.emit('join-room', roomId);
+
+    socket.on('code-update', (newCode) => {
       setCode(newCode);
     });
 
-    socket.on("language-update", (newLanguage) => {
+    socket.on('language-update', (newLanguage) => {
       setLanguage(newLanguage);
     });
 
     return () => {
-      socket.off("code-update");
-      socket.off("language-update");
+      socket.off('code-update');
+      socket.off('language-update');
       socket.disconnect();
     };
   }, [roomId]);
@@ -81,10 +89,10 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   }
 
   const handleEditorChange = (value: string | undefined): void => {
-    const updatedCode = value || "";
+    const updatedCode = value || '';
     setCode(updatedCode);
     const payload: CodeChangePayload = { roomId, code: updatedCode };
-    socket.emit("code-change", payload);
+    socket.emit('code-change', payload);
   };
 
   // Function to run code (simulated)
@@ -98,18 +106,18 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
 
   // Function to download code
   const downloadCode = () => {
-    const langInfo = LANGUAGES.find(l => l.id === language);
-    const extension = langInfo ? langInfo.extension : "txt";
-    const blob = new Blob([code], { type: "text/plain" });
+    const langInfo = LANGUAGES.find((l) => l.id === language);
+    const extension = langInfo ? langInfo.extension : 'txt';
+    const blob = new Blob([code], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
     a.download = `code.${extension}`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    
+
     // toast({
     //   title: "Download Complete",
     //   description: `File saved as code.${extension}`,
@@ -138,7 +146,20 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
                 {LANGUAGES.map((lang) => (
                   <SelectItem key={lang.id} value={lang.id}>
                     <div className="flex items-center gap-2">
-                      <LanguageBadge language={lang.id as "javascript" | "typescript" | "python" | "html" | "css" | "cpp" | "csharp" | "go" | "rust"} />
+                      <LanguageBadge
+                        language={
+                          lang.id as
+                            | 'javascript'
+                            | 'typescript'
+                            | 'python'
+                            | 'html'
+                            | 'css'
+                            | 'cpp'
+                            | 'csharp'
+                            | 'go'
+                            | 'rust'
+                        }
+                      />
                       <span>{lang.name}</span>
                     </div>
                   </SelectItem>
@@ -147,32 +168,27 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
             </Select>
             <LanguageBadge language={language} size="sm" />
           </div>
-          
+
           <div className="flex items-center gap-2">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={copyCode} 
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={copyCode}
               className="h-8 w-8"
               title="Copy Code"
             >
               <Copy size={16} />
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={downloadCode}
               className="h-8 w-8"
               title="Download Code"
             >
               <Download size={16} />
             </Button>
-            <Button 
-              variant="default" 
-              size="sm" 
-              onClick={runCode}
-              className="gap-1"
-            >
+            <Button variant="default" size="sm" onClick={runCode} className="gap-1">
               <Play size={14} />
               <span>Run</span>
             </Button>
@@ -194,13 +210,13 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
               }}
               options={{
                 fontSize: 14,
-                lineNumbers: "on",
+                lineNumbers: 'on',
                 minimap: { enabled: true },
-                fontFamily: "var(--font-mono), monospace",
+                fontFamily: 'var(--font-mono), monospace',
                 fontLigatures: true,
-                cursorBlinking: "smooth",
+                cursorBlinking: 'smooth',
                 smoothScrolling: true,
-                wordWrap: "on",
+                wordWrap: 'on',
                 tabSize: 2,
                 automaticLayout: true,
               }}
@@ -211,7 +227,7 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
         <ResizablePanel defaultSize={30} minSize={15}>
           <div className="h-full p-2 bg-black/70 font-mono text-sm overflow-auto">
             <div className="p-2 text-gray-300 whitespace-pre-wrap">
-              {output || "// Output will appear here when you run your code"}
+              {output || '// Output will appear here when you run your code'}
             </div>
           </div>
         </ResizablePanel>
