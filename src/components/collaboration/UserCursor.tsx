@@ -7,12 +7,12 @@ interface UserCursorProps {
 
 export function UserCursor({ user, position }: UserCursorProps) {
   if (!position) return null;
-  
+
   return (
     <motion.div
       className="absolute pointer-events-none z-50"
       initial={{ opacity: 0 }}
-      animate={{ 
+      animate={{
         opacity: 1,
         x: position.x,
         y: position.y,
@@ -26,9 +26,9 @@ export function UserCursor({ user, position }: UserCursorProps) {
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ 
+          style={{
             color: user.color || '#3b82f6',
-            transform: 'rotate(-15deg)'
+            transform: 'rotate(-15deg)',
           }}
         >
           <path
@@ -36,7 +36,7 @@ export function UserCursor({ user, position }: UserCursorProps) {
             fill="currentColor"
           />
         </svg>
-        <div 
+        <div
           className="absolute top-0 left-6 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium"
           style={{ backgroundColor: user.color || '#3b82f6', color: 'white' }}
         >

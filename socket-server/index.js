@@ -16,7 +16,7 @@ const io = new Server(server, {
 });
 
 // Track users in rooms
-const roomUsers: { [roomId: string]: Set<string> } = {};
+const roomUsers = {};
 
 io.on("connection", (socket) => {
   console.log("User connected", socket.id);

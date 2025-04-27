@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { faker } from "@faker-js/faker";
-import { v4 as uuidv4 } from "uuid";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import { faker } from '@faker-js/faker';
+import { v4 as uuidv4 } from 'uuid';
+import Image from 'next/image';
 
 const UserAvatar = () => {
   const [randomUser, setRandomUser] = useState<{ name: string; avatar: string } | null>(null);
@@ -17,7 +17,13 @@ const UserAvatar = () => {
 
   return (
     <div>
-      <Image src={randomUser.avatar} alt="User Avatar" className="rounded-full" width={48} height={48} />
+      <Image
+        src={randomUser.avatar}
+        alt="User Avatar"
+        className="rounded-full"
+        width={48}
+        height={48}
+      />
       <span className="username">{randomUser.name}</span>
     </div>
   );

@@ -25,10 +25,10 @@ export function useCollaboration(roomId: string) {
   const [users, setUsers] = useState<User[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [cursors, setCursors] = useState<Record<string, CursorPosition>>({});
-  
+
   useEffect(() => {
     if (!roomId) return;
-    
+
     // Create current user on mount
     const userId = uuidv4();
     const newUser: User = {
@@ -38,31 +38,31 @@ export function useCollaboration(roomId: string) {
       color: faker.color.rgb({ format: 'hex', casing: 'lower' }),
       active: true,
     };
-    
+
     setCurrentUser(newUser);
-    
+
     // Join room with user info
     socket.emit('join-room', { roomId, user: newUser });
-    
+
     // Listen for user events
     socket.on('users-update', (updatedUsers: User[]) => {
       setUsers(updatedUsers);
     });
-    
+
     socket.on('cursor-move', ({ userId, position }: CursorUpdate) => {
-      setCursors(prev => ({ ...prev, [userId]: position }));
+      setCursors((prev) => ({ ...prev, [userId]: position }));
     });
-    
+
     // Mouse move handler to broadcast cursor position
     const handleMouseMove = (event: MouseEvent) => {
       const position: CursorPosition = { x: event.clientX, y: event.clientY };
       socket.emit('cursor-update', { roomId, userId: newUser.id, position });
     };
-    
+
     // Throttled event listener
     let lastEmitTime = 0;
     const throttleTime = 50; // ms
-    
+
     const throttledMouseMove = (event: MouseEvent) => {
       const now = Date.now();
       if (now - lastEmitTime > throttleTime) {
@@ -70,9 +70,9 @@ export function useCollaboration(roomId: string) {
         lastEmitTime = now;
       }
     };
-    
+
     window.addEventListener('mousemove', throttledMouseMove);
-    
+
     // Cleanup
     return () => {
       window.removeEventListener('mousemove', throttledMouseMove);
@@ -81,6 +81,6 @@ export function useCollaboration(roomId: string) {
       socket.off('cursor-move');
     };
   }, [roomId]);
-  
+
   return { users, currentUser, cursors };
 }

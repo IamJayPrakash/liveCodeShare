@@ -42,7 +42,7 @@ export const defaultMetadata: Metadata = {
     'live pair programming',
     'remote coding assessments',
     'best online code editor',
-    'real-time programming platform'
+    'real-time programming platform',
   ],
   authors: [{ name: 'Jay Prakash', url: 'https://github.com/IamJayPrakash' }],
   creator: 'Jay Prakash',
@@ -67,9 +67,9 @@ export const defaultMetadata: Metadata = {
   verification: {
     google: '1mlwv5pCe6_Ncql6DKNDstpFNiDWNEt8FPKblJ0fAI0',
     other: {
-      'bing': 'BING_VERIFICATION_CODE', // If you want later
-      'yandex': 'YANDEX_VERIFICATION_CODE',
-    }
+      bing: 'BING_VERIFICATION_CODE', // If you want later
+      yandex: 'YANDEX_VERIFICATION_CODE',
+    },
   },
   openGraph: {
     type: 'website',
@@ -97,7 +97,8 @@ export const defaultMetadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'LiveCodeShare - Real-Time Collaborative Code Editor',
-    description: 'Collaborate on code instantly with syntax highlighting, live rooms, and customizable themes. Perfect for developers, interviews, and educators.',
+    description:
+      'Collaborate on code instantly with syntax highlighting, live rooms, and customizable themes. Perfect for developers, interviews, and educators.',
     site: '@IamJayPrakash',
     creator: '@IamJayPrakash',
     images: [`${siteUrl}/twitter-image.png`],

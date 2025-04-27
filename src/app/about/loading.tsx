@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -17,12 +17,12 @@ export default function Loading() {
           <motion.div
             animate={{
               scale: [1, 1.1, 1],
-              rotate: [0, 5, -5, 0]
+              rotate: [0, 5, -5, 0],
             }}
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              repeatType: "loop"
+              repeatType: 'loop',
             }}
             className="inline-flex"
           >
@@ -30,25 +30,21 @@ export default function Loading() {
           </motion.div>
 
           <div className="space-y-3">
-            <h1 className="text-3xl font-bold tracking-tight">
-              Loading LiveCodeShare...
-            </h1>
-            <p className="text-muted-foreground">
-              Preparing your collaborative coding environment
-            </p>
+            <h1 className="text-3xl font-bold tracking-tight">Loading LiveCodeShare...</h1>
+            <p className="text-muted-foreground">Preparing your collaborative coding environment</p>
           </div>
 
           <div className="w-16 h-1 bg-muted rounded-full mx-auto overflow-hidden">
             <motion.div
               className="h-full bg-primary"
               animate={{
-                width: ["0%", "100%", "0%"],
-                x: ["0%", "0%", "100%"]
+                width: ['0%', '100%', '0%'],
+                x: ['0%', '0%', '100%'],
               }}
               transition={{
                 duration: 1.5,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: 'easeInOut',
               }}
             />
           </div>

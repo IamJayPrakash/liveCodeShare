@@ -23,9 +23,9 @@ export default function PrivacyPolicyPage() {
               <h1 className="text-4xl font-bold tracking-tight md:text-5xl">Privacy Policy</h1>
             </div>
             <p>
-              Welcome to <strong>LiveCodeShare</strong>. Your privacy is
-              important to us. This Privacy Policy explains how we collect, use, and protect your
-              personal information when you use our platform.
+              Welcome to <strong>LiveCodeShare</strong>. Your privacy is important to us. This
+              Privacy Policy explains how we collect, use, and protect your personal information
+              when you use our platform.
             </p>
             <div className="prose dark:prose-invert mx-auto max-w-3xl flex flex-col gap-4">
               <h2 className="text-2xl font-bold flex items-center gap-2">
@@ -34,16 +34,16 @@ export default function PrivacyPolicyPage() {
               <p>We may collect the following types of information:</p>
               <ul className="list-disc pl-5 md:pl-8">
                 <li>
-                  <strong>Personal Information:</strong> Name, email address,
-                  and other details you provide when signing up or contacting us.
+                  <strong>Personal Information:</strong> Name, email address, and other details you
+                  provide when signing up or contacting us.
                 </li>
                 <li>
-                  <strong>Usage Data:</strong> Information on how you use the
-                  platform, including IP address, browser type, and device information.
+                  <strong>Usage Data:</strong> Information on how you use the platform, including IP
+                  address, browser type, and device information.
                 </li>
                 <li>
-                  <strong>Session Data:</strong> Code snippets, room
-                  interactions, and other data shared during collaborative sessions.
+                  <strong>Session Data:</strong> Code snippets, room interactions, and other data
+                  shared during collaborative sessions.
                 </li>
               </ul>
 

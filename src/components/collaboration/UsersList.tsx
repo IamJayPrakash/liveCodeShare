@@ -34,7 +34,9 @@ export function UsersList({ users = [] }: { users: User[] }) {
                             {user.name.substring(0, 2).toUpperCase()}
                           </AvatarFallback>
                         </Avatar>
-                        <span className={`absolute -top-1 -right-1 h-3 w-3 rounded-full ${user.active ? 'bg-green-500' : 'bg-yellow-500'} ring-2 ring-white`} />
+                        <span
+                          className={`absolute -top-1 -right-1 h-3 w-3 rounded-full ${user.active ? 'bg-green-500' : 'bg-yellow-500'} ring-2 ring-white`}
+                        />
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side="top" className="font-medium">

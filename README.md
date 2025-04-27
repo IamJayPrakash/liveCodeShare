@@ -1,4 +1,3 @@
-
 <h1 align="center">🚀 LiveCodeShare</h1>
 <p align="center">
   <a href="https://livecodeshare.vercel.app/room/1"><img src="https://img.shields.io/badge/Live-Demo-orange?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
@@ -13,6 +12,7 @@
 ---
 
 ## 🔥 Features
+
 <p align="center">
   <!-- Real-time collaboration GIF -->
   <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Real-time Collaboration" width="50%" />
@@ -30,6 +30,7 @@
 ---
 
 ## 🛠️ Tech Stack & Tools
+
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-15.3.0-black?style=for-the-badge&logo=nextdotjs" alt="Next.js" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-4.0-blue?style=for-the-badge&logo=tailwindcss" alt="Tailwind CSS" />
@@ -65,26 +66,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 🎨 Usage Example
-
-```tsx
-import { motion } from 'framer-motion';
-
-export default function Demo() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: 'spring', stiffness: 100 }}
-    >
-      <h1 className="text-2xl font-bold">Welcome to LiveCodeShare!</h1>
-    </motion.div>
-  );
-}
-```
 
 ---
 
@@ -125,4 +106,3 @@ npm run test:coverage
 ---
 
 <p align="center">Happy coding with <strong>LiveCodeShare</strong>! 🚀</p>
-

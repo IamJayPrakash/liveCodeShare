@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <AppLayout>
       <Header userCount={0} />
-      
+
       <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,8 @@ export default function Home() {
             Live<span className="text-primary">Code</span>Share
           </h1>
           <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl">
-            Collaborate in real-time with others. Edit code, share instantly, and work together seamlessly.
+            Collaborate in real-time with others. Edit code, share instantly, and work together
+            seamlessly.
           </p>
         </motion.div>
 
@@ -56,27 +57,21 @@ export default function Home() {
           <Card className="border-2">
             <CardHeader>
               <CardTitle>Start Collaborating</CardTitle>
-              <CardDescription>
-                Create a new room or join an existing one
-              </CardDescription>
+              <CardDescription>Create a new room or join an existing one</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button 
-                className="w-full gap-2 py-6" 
-                onClick={createNewRoom}
-                size="lg"
-              >
+              <Button className="w-full gap-2 py-6" onClick={createNewRoom} size="lg">
                 <Code size={18} />
                 Create a New Room
                 <ArrowRight size={16} className="ml-auto" />
               </Button>
-              
+
               <div className="relative flex items-center py-2">
                 <div className="flex-grow border-t border-muted"></div>
                 <span className="flex-shrink mx-3 text-muted-foreground text-sm">or</span>
                 <div className="flex-grow border-t border-muted"></div>
               </div>
-              
+
               <form onSubmit={joinRoom} className="flex w-full items-center space-x-2">
                 <Input
                   type="text"
@@ -92,7 +87,7 @@ export default function Home() {
             </CardContent>
           </Card>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,11 +103,12 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                See changes instantly as people type. Multiple users can work on the same file together.
+                See changes instantly as people type. Multiple users can work on the same file
+                together.
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -126,7 +122,7 @@ export default function Home() {
               </p>
             </CardContent>
           </Card>
-          
+
           <Card className="bg-card">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2 text-lg">
@@ -142,7 +138,7 @@ export default function Home() {
           </Card>
         </motion.div>
       </div>
-  <Footer />
+      <Footer />
     </AppLayout>
   );
 }
