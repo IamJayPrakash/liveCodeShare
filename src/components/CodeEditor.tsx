@@ -12,7 +12,8 @@ import { ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import { Button } from '@/components/ui/button';
 import { Play, Download, Copy } from 'lucide-react';
 import { LanguageBadge } from './LanguageBadge';
-
+import { toast } from 'sonner';
+import MonacoCodeEditor from "./MonacoCodeEditor"
 const LANGUAGES = [
   { id: 'javascript', name: 'JavaScript', extension: 'js' },
   { id: 'typescript', name: 'TypeScript', extension: 'ts' },
@@ -127,15 +128,12 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   // Function to copy code
   const copyCode = () => {
     navigator.clipboard.writeText(code);
-    // toast({
-    //   title: "Code Copied",
-    //   description: "Code has been copied to clipboard",
-    // });
+    toast('Code copied to clipboard');
   };
 
   return (
     <div className="h-[calc(100vh-3.5rem)] flex flex-col">
-      <div className="border-b p-2 bg-card">
+      <div className="border-b p-2 bg-card ">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Select value={language} onValueChange={handleLanguageChange}>
@@ -195,43 +193,13 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
           </div>
         </div>
       </div>
-
-      <ResizablePanelGroup direction="vertical" className="flex-grow">
-        <ResizablePanel defaultSize={70} minSize={30}>
-          <div className="h-full overflow-hidden">
-            <Editor
-              height="100%"
-              language={language}
-              value={code}
-              onChange={handleEditorChange}
-              onMount={() => {
-                // Ensure editor is properly sized
-                window.dispatchEvent(new Event('resize'));
-              }}
-              options={{
-                fontSize: 14,
-                lineNumbers: 'on',
-                minimap: { enabled: true },
-                fontFamily: 'var(--font-mono), monospace',
-                fontLigatures: true,
-                cursorBlinking: 'smooth',
-                smoothScrolling: true,
-                wordWrap: 'on',
-                tabSize: 2,
-                automaticLayout: true,
-              }}
-              theme="vs-dark"
-            />
-          </div>
-        </ResizablePanel>
-        <ResizablePanel defaultSize={30} minSize={15}>
-          <div className="h-full p-2 bg-black/70 font-mono text-sm overflow-auto">
-            <div className="p-2 text-gray-300 whitespace-pre-wrap">
-              {output || '// Output will appear here when you run your code'}
-            </div>
-          </div>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+      
+      <MonacoCodeEditor
+  language={language}
+  code={code}
+  onChange={handleEditorChange}
+/>
+      
     </div>
   );
 };
