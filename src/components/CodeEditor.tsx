@@ -13,7 +13,8 @@ import { Button } from '@/components/ui/button';
 import { Play, Download, Copy } from 'lucide-react';
 import { LanguageBadge } from './LanguageBadge';
 import { toast } from 'sonner';
-import MonacoCodeEditor from "./MonacoCodeEditor"
+
+
 const LANGUAGES = [
   { id: 'javascript', name: 'JavaScript', extension: 'js' },
   { id: 'typescript', name: 'TypeScript', extension: 'ts' },
