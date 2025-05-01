@@ -11,6 +11,7 @@ import { ArrowRight, Code, Globe, Users } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Footer } from '@/components/Footer';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function Home() {
   const [roomInput, setRoomInput] = useState('');
@@ -31,6 +32,7 @@ export default function Home() {
   return (
     <AppLayout>
       <Header userCount={0} />
+
 
       <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 mx-auto">
         <motion.div
@@ -138,6 +140,7 @@ export default function Home() {
             </Card>
           </motion.div>
       </div>
+      <AnimatedBackground title="LiveCodeShare" subtitle="-Collaborate in real-time with others." ><div>Welcome to LiveCodeShare!</div></AnimatedBackground>
       <Footer />
     </AppLayout>
   );
