@@ -4,12 +4,13 @@ import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Footer } from '@/components/Footer';
 import { motion } from 'framer-motion';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function HelpPage() {
   return (
     <AppLayout>
       <Header userCount={0} />
-
+      <AnimatedBackground title="Help" subtitle="-Your guide to using LiveCodeShare">
       <main className="flex-1">
         <div className="container mx-auto px-4 py-8">
           <motion.div
@@ -18,7 +19,6 @@ export default function HelpPage() {
             transition={{ duration: 0.5 }}
             className="space-y-8"
           >
-            <h1 className="text-3xl font-bold mb-4">How to Use LiveCodeShare</h1>
             <p className="text-lg mb-2">
               LiveCodeShare allows you to create a room and share code with others in real-time.
             </p>
@@ -30,6 +30,7 @@ export default function HelpPage() {
           </motion.div>
         </div>
       </main>
+      </AnimatedBackground>
 
       <Footer />
     </AppLayout>

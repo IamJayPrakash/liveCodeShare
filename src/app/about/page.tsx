@@ -6,12 +6,17 @@ import { Code, Users, Zap, Globe, Shield, Coffee } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Footer } from '@/components/Footer';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function AboutPage() {
   return (
     <AppLayout>
       <Header userCount={0} />
-
+      <AnimatedBackground title="About Us" subtitle="LiveCodeShare" ><div>
+      <p className="text-xl text-muted-foreground">
+                Our mission is to make collaborative coding accessible and seamless.
+              </p></div></AnimatedBackground>
+       
       <main className="flex-1">
         <div className="container py-12 md:py-16">
           <motion.div
@@ -21,10 +26,8 @@ export default function AboutPage() {
             className="mx-auto max-w-3xl space-y-8"
           >
             <div className="text-center space-y-3">
-              <h1 className="text-4xl font-bold tracking-tight md:text-5xl">About LiveCodeShare</h1>
-              <p className="text-xl text-muted-foreground">
-                Our mission is to make collaborative coding accessible and seamless.
-              </p>
+              {/* <h1 className="text-4xl font-bold tracking-tight md:text-5xl">About LiveCodeShare</h1> */}
+              
             </div>
 
             <div className="prose dark:prose-invert mx-auto max-w-3xl">

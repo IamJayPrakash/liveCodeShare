@@ -6,12 +6,14 @@ import { motion } from 'framer-motion';
 import { FileX, Home } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { AppLayout } from '@/components/layout/AppLayout';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function NotFound() {
   const router = useRouter();
 
   return (
     <AppLayout>
+      <AnimatedBackground title="404!" subtitle="LiveCodeShare" >
       <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,6 +46,7 @@ export default function NotFound() {
           </div>
         </motion.div>
       </div>
+ </AnimatedBackground>
     </AppLayout>
   );
 }
