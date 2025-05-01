@@ -10,6 +10,7 @@ import { Send, Mail, MessageSquare, Github } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Footer } from '@/components/Footer';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -57,9 +58,10 @@ export default function ContactPage() {
   };
 
   return (
+    
     <AppLayout>
       <Header userCount={0} />
-
+      <AnimatedBackground title="" subtitle="">
       <main className="flex-1">
         <div className="container py-12 md:py-16">
           <motion.div
@@ -238,6 +240,7 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </main>
+      </AnimatedBackground>
 
       <Footer />
     </AppLayout>
