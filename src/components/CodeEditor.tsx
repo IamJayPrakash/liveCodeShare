@@ -217,6 +217,7 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
                 wordWrap: 'on',
                 tabSize: 2,
                 automaticLayout: true,
+                fixedOverflowWidgets: true
               }}
               theme="vs-dark"
             />
