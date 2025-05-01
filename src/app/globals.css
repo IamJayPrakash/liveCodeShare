@@ -141,6 +141,15 @@
     overflow: hidden;
   }
 }
+.icon{
+  position : relative;
+  top : 1px;
+}
+@media screen and (max-width: 768px) {
+  .custom-component {
+    flex-direction: column;
+  }
+}
 
 @keyframes accordion-down {
   from {

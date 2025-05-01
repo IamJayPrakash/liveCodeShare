@@ -14,9 +14,9 @@ export function Footer() {
       {/* Decorative gradient element */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
       
-      <div className="container px-4 md:px-6 lg:px-8">
+      <div className="container px-4 md:px-8 lg:px-12 py-8">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8">
           {/* Brand section with enhanced styling */}
           <div className="flex flex-col">
             <div className="flex items-center mb-4">
@@ -141,7 +141,7 @@ export function Footer() {
         <Separator className="my-8 opacity-30" />
 
         {/* Bottom footer with enhanced styling */}
-        <div className="flex flex-col sm:flex-row items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground mb-4 sm:mb-0 flex items-center">
             <span>© {currentYear} LiveCodeShare. All rights reserved.</span>
           </p>
