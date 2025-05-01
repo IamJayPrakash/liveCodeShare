@@ -32,7 +32,7 @@ export default function Home() {
     <AppLayout>
       <Header userCount={0} />
 
-      <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24">
+      <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -87,56 +87,56 @@ export default function Home() {
             </CardContent>
           </Card>
         </motion.div>
+        
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto place-items-center"
+          >
+            <Card className="bg-card ">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Globe className="h-5 w-5 text-primary icon" />
+                  Real-time Collaboration
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  See changes instantly as people type. Multiple users can work on the same file
+                  together.
+                </p>
+              </CardContent>
+            </Card>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 w-full max-w-4xl"
-        >
-          <Card className="bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Globe className="h-5 w-5 text-primary" />
-                Real-time Collaboration
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                See changes instantly as people type. Multiple users can work on the same file
-                together.
-              </p>
-            </CardContent>
-          </Card>
+            <Card className="bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Code className="h-5 w-5 text-primary" />
+                  Multiple Languages
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Support for JavaScript, Python, HTML, CSS, and many other programming languages.
+                </p>
+              </CardContent>
+            </Card>
 
-          <Card className="bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Code className="h-5 w-5 text-primary" />
-                Multiple Languages
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Support for JavaScript, Python, HTML, CSS, and many other programming languages.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Users className="h-5 w-5 text-primary" />
-                Easy Sharing
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Just share the room ID or URL with your team to start collaborating instantly.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
+            <Card className="bg-card">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Users className="h-5 w-5 text-primary" />
+                  Easy Sharing
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  Just share the room ID or URL with your team to start collaborating instantly.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
       </div>
       <Footer />
     </AppLayout>
