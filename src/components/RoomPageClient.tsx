@@ -24,6 +24,7 @@ const RoomPageClient = ({ roomId }: RoomPageClientProps) => {
     }
 
     socket.emit('join-room', roomId);
+    toast.success(`You joined room ${roomId}`);
 
     socket.on('user-joined', () => {
       toast.success(`A new user has joined your room ${roomId}`);
