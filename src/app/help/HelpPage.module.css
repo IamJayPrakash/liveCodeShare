@@ -1,0 +1,229 @@
+.gridBackground {
+    min-height: 100vh;
+    background-color: #0a0a12;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: top left;
+  }
+  
+  .heading {
+    color: #e5e7eb;
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  
+  .subtitle {
+    color: #cbd5e1;
+    font-size: 1.35rem;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    font-weight: 400;
+  }
+  
+  .stepRow {
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    align-items: stretch;
+    justify-content: center;
+  }
+  
+  @media (max-width: 900px) {
+    .stepRow {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+  
+  .stepCardContent {
+    margin-left: 0.5rem;
+  }
+  
+  .stepCircle {
+    background: linear-gradient(135deg, #ede9fe 0%, #a5b4fc 100%);
+    color: #3730a3;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    box-shadow: 0 2px 12px 0 rgba(165,180,252,0.15);
+    flex-shrink: 0;
+  }
+  
+  .stepTitleRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.1rem;
+  }
+  
+  .stepTitle {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  
+  .stepDesc {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+  }
+  
+  .ctaBtn {
+    background: #d6ccff;
+    color: #18182c;
+    font-weight: 700;
+    font-size: 1.18rem;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.9rem 2.2rem;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+    box-shadow: 0 2px 12px 0 rgba(165,180,252,0.10);
+    cursor: pointer;
+  }
+  .ctaBtn:hover {
+    background: #a5b4fc;
+    color: #18182c;
+  }
+  
+  .stepNumberBox {
+    background: linear-gradient(135deg, #18182c 60%, #23234a 100%);
+    border-radius: 2rem;
+    min-width: 370px;
+    max-width: 500px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+  }
+  
+  @media (max-width: 900px) {
+    .stepNumberBox {
+      min-width: 0;
+      width: 100%;
+      height: 180px;
+      border-radius: 1.5rem;
+    }
+  }  
+  
+  .stepNumber {
+    color: #a5b4fc;
+    font-size: 7rem;
+    font-weight: 700;
+    opacity: 0.7;
+    text-align: center;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .card {
+    --tw-gradient-position: to bottom in oklab;
+    --tw-gradient-from: #1a1c20;
+    --tw-gradient-to: #08090d;
+    background: linear-gradient(var(--tw-gradient-position), var(--tw-gradient-from), var(--tw-gradient-to));
+    border-radius: 2rem;
+    box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+    padding: 32px;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 420px;
+    min-height: 70%;
+    border: 3px solid rgba(156, 163, 255, 0.13);
+    position: relative;
+    max-width: 650px;
+  }
+
+  @media (max-width: 900px) {
+    .card {
+      min-width: 0;
+      max-width: 100%;
+      padding: 2rem 1.2rem;
+      min-height: 260px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .stepRow {
+      flex-direction: column !important;
+      gap: 2rem;
+      align-items: stretch;
+    }
+    .card {
+      min-width: 0;
+      max-width: 100%;
+      padding: 1.5rem 1rem;
+      min-height: 220px;
+      border-radius: 1.2rem;
+    }
+    .stepNumberBox {
+      min-width: 0;
+      width: 100%;
+      height: 120px;
+      border-radius: 1.2rem;
+      margin-top: 1.2rem;
+      max-width: 100%;
+    }
+    .stepNumber {
+      font-size: 3.5rem;
+    }
+    .stepCircle {
+      width: 48px;
+      height: 48px;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+    }
+    .stepTitle {
+      font-size: 1.2rem;
+    }
+    .stepDesc {
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .ctaBtn {
+      font-size: 1rem;
+      padding: 0.7rem 1.4rem;
+    }
+    .heading {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .container {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .heading {
+      font-size: 1.3rem;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+    }
+    .stepNumber {
+      font-size: 2.2rem;
+    }
+    .card, .stepNumberBox {
+      padding: 1rem 0.5rem;
+      border-radius: 0.8rem;
+    }
+  }
