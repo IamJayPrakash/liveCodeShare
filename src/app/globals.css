@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-y: auto;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
 @layer base {
   :root {
     --radius: 0.625rem;
