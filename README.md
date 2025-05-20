@@ -78,6 +78,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 5. Push to your fork: `git push origin feature/YourFeatureName`
 6. Open a Pull Request and wait for review 🚀
 
+![Alt](https://repobeats.axiom.co/api/embed/3a5680a77e2785974c42df953cd1b7b042ad5df4.svg "Repobeats analytics image")
+
+
 See [Code of Conduct](CODE_OF_CONDUCT.md) for community guidelines.
 
 ---

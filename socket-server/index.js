@@ -33,8 +33,10 @@ io.on("connection", (socket) => {
     // Add user to room
     roomUsers[roomId].add(socket.id);
     
-    // Emit to others that user joined
-    socket.to(roomId).emit("user-joined", socket.id);
+    // Emit to everyone in the room that user joined
+    io.in(roomId).emit("user-joined", {
+      userId: socket.id
+    });
     
     // Emit current user count to everyone in the room
     io.to(roomId).emit("user-count", roomUsers[roomId].size);
