@@ -33,7 +33,7 @@ export function Footer() {
             {/* Social links with enhanced styling */}
             <div className="flex items-center mt-6 space-x-3">
               <Link
-                href="https://github.com/iamjayprkash/livecodeshare"
+                href="https://github.com/iamjayprakash/livecodeshare"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full p-2.5 bg-secondary/80 text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:-translate-y-1 shadow-sm"
