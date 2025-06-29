@@ -69,6 +69,7 @@ export const defaultMetadata: Metadata = {
     other: {
       bing: 'BING_VERIFICATION_CODE', // If you want later
       yandex: 'YANDEX_VERIFICATION_CODE',
+      "google-adsense-account": "ca-pub-9129390699994968",
     },
   },
   openGraph: {
