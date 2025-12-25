@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 
 import { defaultMetadata, getWebsiteSchema, getOrganizationSchema, getSoftwareApplicationSchema } from '@/lib/metaData';
 
@@ -46,6 +47,12 @@ export default function RootLayout({
             __html: JSON.stringify(getSoftwareApplicationSchema()),
           }}
         />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9129390699994968"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SocketProvider>
@@ -63,3 +70,4 @@ export default function RootLayout({
     </html>
   );
 }
+
