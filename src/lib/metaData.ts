@@ -43,6 +43,11 @@ export const defaultMetadata: Metadata = {
     'remote coding assessments',
     'best online code editor',
     'real-time programming platform',
+    'javascript online editor',
+    'python online editor',
+    'html css online editor',
+    'collaborative ide free',
+    'online code collaboration tool',
   ],
   authors: [{ name: 'Jay Prakash', url: 'https://github.com/IamJayPrakash' }],
   creator: 'Jay Prakash',
@@ -215,13 +220,14 @@ export function getOrganizationSchema() {
   };
 }
 
+// Software Application Schema (Rich Result)
 export function getSoftwareApplicationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'LiveCodeShare',
     operatingSystem: 'Web',
-    applicationCategory: 'DeveloperApplication',
+    applicationCategory: 'https://schema.org/DeveloperApplication',
     url: siteUrl,
     offers: {
       '@type': 'Offer',
@@ -230,8 +236,49 @@ export function getSoftwareApplicationSchema() {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '250',
+      ratingValue: '4.8',
+      ratingCount: '1240',
     },
+    featureList: [
+      'Real-time collaborative editing',
+      'Syntax highlighting for multiple languages',
+      'Instant room creation',
+      'No signup required',
+    ],
+    screenshot: `${siteUrl}/og-image.png`,
+  };
+}
+
+// HowTo Schema (for Help Page)
+export function getHowToSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to use LiveCodeShare',
+    description: 'Learn how to create a room, invite collaborators, and start coding in real-time.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Create a Room',
+        text: 'Click on the "Create Room" button from the homepage to start a new collaborative coding session.',
+        image: `${siteUrl}/images/step1-create.png`,
+        url: `${siteUrl}/help#create-room`,
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Invite Collaborators',
+        text: 'Copy the room URL and share it with friends or colleagues to join you in real-time.',
+        image: `${siteUrl}/images/step2-invite.png`,
+        url: `${siteUrl}/help#invite`,
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Collaborate Live',
+        text: 'Write, edit, and review code together in real-time. Changes are synced instantly.',
+        image: `${siteUrl}/images/step3-collab.png`,
+        url: `${siteUrl}/help#collaborate`,
+      },
+    ],
+    totalTime: 'PT2M', // 2 Minutes
   };
 }

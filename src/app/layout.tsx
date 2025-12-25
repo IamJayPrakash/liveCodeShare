@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import { defaultMetadata, getWebsiteSchema, getOrganizationSchema } from '@/lib/metaData';
+import { defaultMetadata, getWebsiteSchema, getOrganizationSchema, getSoftwareApplicationSchema } from '@/lib/metaData';
 
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
@@ -34,6 +34,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(getOrganizationSchema()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getSoftwareApplicationSchema()),
           }}
         />
       </head>

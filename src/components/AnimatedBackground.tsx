@@ -251,7 +251,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ children, title
       <div ref={headerRef} className="relative w-full min-h-screen bg-primary overflow-hidden">
         <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0"></canvas>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center">
-          <h1 className="text-4xl md:text-5xl text-white font-bold">
+          <h1 className="text-4xl md:text-5xl text-primary-foreground font-bold">
             {title} <span className="font-thin">{subtitle}</span>
           </h1>
           {children}

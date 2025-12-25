@@ -7,8 +7,10 @@ export const runtime = 'edge';
 export function GET() {
   const content = `User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://livecodeshare.vercel.app/sitemap.xml
+Sitemap: https://livecodeshare.vercel.app/server-sitemap.xml
 Host: livecodeshare.vercel.app
 `;
 

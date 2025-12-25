@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface HealthStatus {
     status: 'healthy' | 'unhealthy' | 'checking';
@@ -14,7 +14,7 @@ export function useSocketHealth() {
         status: 'checking',
         message: 'Checking socket server status...',
     });
-    const [retryCount, setRetryCount] = useState(0);
+    const retryCountRef = useRef(0);
 
     useEffect(() => {
         let isMounted = true;
@@ -34,7 +34,9 @@ export function useSocketHealth() {
                     });
                 } else if (data.isStarting) {
                     // Render free tier takes ~60 seconds to start
-                    const estimatedWait = Math.max(60 - retryCount * 5, 10);
+                    const currentRetries = retryCountRef.current;
+                    const estimatedWait = Math.max(60 - currentRetries * 5, 10);
+
                     setHealthStatus({
                         status: 'unhealthy',
                         message: 'Socket server is starting up...',
@@ -42,8 +44,10 @@ export function useSocketHealth() {
                         estimatedWaitTime: estimatedWait,
                     });
 
+                    // Increment retry count
+                    retryCountRef.current += 1;
+
                     // Retry after 5 seconds
-                    setRetryCount(prev => prev + 1);
                     timeoutId = setTimeout(checkHealth, 5000);
                 } else {
                     setHealthStatus({
@@ -73,7 +77,7 @@ export function useSocketHealth() {
             isMounted = false;
             if (timeoutId) clearTimeout(timeoutId);
         };
-    }, [retryCount]);
+    }, []); // Empty dependency array to prevent re-runs
 
     return healthStatus;
 }
