@@ -7,11 +7,14 @@ import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code, Globe, Users } from 'lucide-react';
+import { ArrowRight, Code } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Footer } from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { FeatureSection } from '@/components/home/FeatureSection';
+import { FAQSection } from '@/components/home/FAQSection';
+import { CallToActionSection } from '@/components/home/CallToActionSection';
 
 export default function Home() {
   const [roomInput, setRoomInput] = useState('');
@@ -32,7 +35,6 @@ export default function Home() {
   return (
     <AppLayout>
       <Header userCount={0} />
-
 
       <div className="container flex flex-col items-center justify-center flex-1 py-12 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 mx-auto">
         <motion.div
@@ -104,58 +106,21 @@ export default function Home() {
             </CardContent>
           </Card>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto place-items-center"
-        >
-          <Card className="bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Globe className="h-5 w-5 text-primary icon" aria-hidden="true" />
-                Real-time Collaboration
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                See changes instantly as people type. Multiple users can work on the same file
-                together.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Code className="h-5 w-5 text-primary" aria-hidden="true" />
-                Multiple Languages
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Support for JavaScript, Python, HTML, CSS, and many other programming languages.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2 text-lg">
-                <Users className="h-5 w-5 text-primary" aria-hidden="true" />
-                Easy Sharing
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Just share the room ID or URL with your team to start collaborating instantly.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
       </div>
-      <AnimatedBackground title="LiveCodeShare" subtitle="-Collaborate in real-time with others." ><div>Welcome to LiveCodeShare!</div></AnimatedBackground>
+
+      <FeatureSection />
+
+      <AnimatedBackground title="LiveCodeShare" subtitle="-Collaborate in real-time with others.">
+        <div className="py-8">
+          <p className="text-center text-lg max-w-2xl mx-auto">
+            Experience the future of collaborative coding today.
+          </p>
+        </div>
+      </AnimatedBackground>
+
+      <FAQSection />
+      <CallToActionSection />
+
       <Footer />
     </AppLayout>
   );
