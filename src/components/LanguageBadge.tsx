@@ -9,6 +9,7 @@ import {
   SiSharp,
   SiGo,
   SiRust,
+  SiOpenjdk,
 } from 'react-icons/si';
 import { cn } from '@/lib/utils';
 
@@ -18,7 +19,7 @@ const LANGUAGE_ICONS = {
   python: { icon: SiPython, color: 'text-yellow-300' },
   html: { icon: SiHtml5, color: 'text-orange-500' },
   css: { icon: SiCss3, color: 'text-blue-400' },
-  // java: { icon: SiJava, color: "text-red-500" },
+  java: { icon: SiOpenjdk, color: "text-red-500" },
   cpp: { icon: SiCplusplus, color: 'text-blue-600' },
   csharp: { icon: SiSharp, color: 'text-green-500' },
   go: { icon: SiGo, color: 'text-cyan-400' },

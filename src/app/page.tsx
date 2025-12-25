@@ -62,83 +62,98 @@ export default function Home() {
               <CardDescription>Create a new room or join an existing one</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Button className="w-full gap-2 py-6" onClick={createNewRoom} size="lg">
-                <Code size={18} />
+              <Button
+                className="w-full gap-2 py-6"
+                onClick={createNewRoom}
+                size="lg"
+                aria-label="Create a new collaboration room"
+              >
+                <Code size={18} aria-hidden="true" />
                 Create a New Room
-                <ArrowRight size={16} className="ml-auto" />
+                <ArrowRight size={16} className="ml-auto" aria-hidden="true" />
               </Button>
 
-              <div className="relative flex items-center py-2">
+              <div className="relative flex items-center py-2" role="separator" aria-hidden="true">
                 <div className="flex-grow border-t border-muted"></div>
                 <span className="flex-shrink mx-3 text-muted-foreground text-sm">or</span>
                 <div className="flex-grow border-t border-muted"></div>
               </div>
 
               <form onSubmit={joinRoom} className="flex w-full items-center space-x-2">
+                <label htmlFor="room-id-input" className="sr-only">
+                  Room ID
+                </label>
                 <Input
+                  id="room-id-input"
                   type="text"
                   placeholder="Enter room ID"
                   value={roomInput}
                   onChange={(e) => setRoomInput(e.target.value)}
                   className="flex-1"
+                  aria-label="Enter room ID to join"
+                  aria-required="true"
                 />
-                <Button type="submit" disabled={!roomInput.trim()}>
+                <Button
+                  type="submit"
+                  disabled={!roomInput.trim()}
+                  aria-label="Join room"
+                >
                   Join
                 </Button>
               </form>
             </CardContent>
           </Card>
         </motion.div>
-        
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto place-items-center"
-          >
-            <Card className="bg-card ">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Globe className="h-5 w-5 text-primary icon" />
-                  Real-time Collaboration
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  See changes instantly as people type. Multiple users can work on the same file
-                  together.
-                </p>
-              </CardContent>
-            </Card>
 
-            <Card className="bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Code className="h-5 w-5 text-primary" />
-                  Multiple Languages
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Support for JavaScript, Python, HTML, CSS, and many other programming languages.
-                </p>
-              </CardContent>
-            </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto place-items-center"
+        >
+          <Card className="bg-card">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Globe className="h-5 w-5 text-primary icon" aria-hidden="true" />
+                Real-time Collaboration
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                See changes instantly as people type. Multiple users can work on the same file
+                together.
+              </p>
+            </CardContent>
+          </Card>
 
-            <Card className="bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Users className="h-5 w-5 text-primary" />
-                  Easy Sharing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Just share the room ID or URL with your team to start collaborating instantly.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <Card className="bg-card">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Code className="h-5 w-5 text-primary" aria-hidden="true" />
+                Multiple Languages
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Support for JavaScript, Python, HTML, CSS, and many other programming languages.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card">
+            <CardHeader className="pb-2">
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Users className="h-5 w-5 text-primary" aria-hidden="true" />
+                Easy Sharing
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Just share the room ID or URL with your team to start collaborating instantly.
+              </p>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
       <AnimatedBackground title="LiveCodeShare" subtitle="-Collaborate in real-time with others." ><div>Welcome to LiveCodeShare!</div></AnimatedBackground>
       <Footer />

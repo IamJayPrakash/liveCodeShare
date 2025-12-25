@@ -246,7 +246,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ children, title
     <>
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       />
       <div ref={headerRef} className="relative w-full min-h-screen bg-primary overflow-hidden">
         <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0"></canvas>

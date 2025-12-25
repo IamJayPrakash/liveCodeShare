@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Share2, Check, Copy } from 'lucide-react';
+import { Share2, Check } from 'lucide-react';
 
 interface ShareRoomButtonProps {
   readonly roomId: string;
@@ -8,17 +8,11 @@ interface ShareRoomButtonProps {
 
 export function ShareRoomButton({ roomId }: ShareRoomButtonProps) {
   const [copied, setCopied] = useState(false);
-  // const { toast } = useToast();
 
   const handleShareClick = () => {
     const roomUrl = `${window.location.origin}/room/${roomId}`;
     navigator.clipboard.writeText(roomUrl).then(() => {
       setCopied(true);
-      // toast({
-      //   title: "Link copied!",
-      //   description: "Room URL has been copied to clipboard",
-      //   // duration: 2000, // Removed as it is not a valid property
-      // });
       setTimeout(() => setCopied(false), 2000);
     });
   };
@@ -29,19 +23,18 @@ export function ShareRoomButton({ roomId }: ShareRoomButtonProps) {
       size="sm"
       onClick={handleShareClick}
       className="gap-1.5 transition-all"
+      aria-label={copied ? "Room link copied to clipboard" : "Share room link"}
     >
       {copied ? (
         <>
-          <Check size={14} className="text-green-500" />
-          <span className="text-xs">
-            {' '}
-            <Copy />
+          <Check size={14} className="text-green-500" aria-hidden="true" />
+          <span className="text-xs" role="status" aria-live="polite">
             Copied!
           </span>
         </>
       ) : (
         <>
-          <Share2 size={14} />
+          <Share2 size={14} aria-hidden="true" />
           <span className="text-xs sm:inline-block">Share</span>
         </>
       )}

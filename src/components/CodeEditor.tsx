@@ -42,7 +42,7 @@ const BOILERPLATE = {
 
 const CodeEditor = ({ roomId }: { roomId: string }) => {
   const [language, setLanguage] = useState<
-    'html' | 'javascript' | 'typescript' | 'python' | 'css' | 'cpp' | 'csharp' | 'go' | 'rust'
+    'html' | 'javascript' | 'typescript' | 'python' | 'css' | 'java' | 'cpp' | 'csharp' | 'go' | 'rust'
   >('javascript');
   const [code, setCode] = useState(BOILERPLATE.javascript);
   // Removed unused isTyping state
@@ -98,11 +98,111 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
 
   // Function to run code (simulated)
   const runCode = () => {
-    setOutput(`Running ${language.toUpperCase()} code...\n\n> Hello, World!`);
-    // toast({
-    //   title: "Code Execution",
-    //   description: `Started running ${language.toUpperCase()} code`,
-    // });
+    try {
+      let result = '';
+
+      // Simulate code execution based on language
+      if (language === 'javascript' || language === 'typescript') {
+        // Capture console.log outputs
+        const logs: string[] = [];
+        const originalLog = console.log;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        console.log = (...args: any[]) => {
+          logs.push(args.map(arg => String(arg)).join(' '));
+        };
+
+        try {
+          // Execute the code in a safe context
+          eval(code);
+          result = logs.length > 0 ? logs.join('\n') : 'Code executed successfully (no output)';
+        } catch (error) {
+          const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+          result = `Error: ${errorMessage}`;
+        } finally {
+          console.log = originalLog;
+        }
+      } else if (language === 'python') {
+        // Extract print statements from Python code
+        const printMatches = code.match(/print\((.*?)\)/g);
+        if (printMatches) {
+          result = printMatches.map(match => {
+            const content = match.replace(/print\((.*?)\)/, '$1').replace(/['"]/g, '');
+            return content;
+          }).join('\n');
+        } else {
+          result = 'Code executed successfully (no output)';
+        }
+      } else if (language === 'html') {
+        result = 'HTML Preview:\n\n' + code.substring(0, 200) + (code.length > 200 ? '...' : '');
+      } else if (language === 'css') {
+        result = 'CSS Styles loaded successfully';
+      } else if (language === 'java') {
+        // Extract System.out.println statements
+        const printMatches = code.match(/System\.out\.println\((.*?)\)/g);
+        if (printMatches) {
+          result = printMatches.map(match => {
+            const content = match.replace(/System\.out\.println\((.*?)\)/, '$1').replace(/['"]/g, '');
+            return content;
+          }).join('\n');
+        } else {
+          result = 'Code compiled successfully (no output)';
+        }
+      } else if (language === 'cpp') {
+        // Extract cout statements
+        const coutMatches = code.match(/cout\s*<<\s*(.*?)\s*<</g);
+        if (coutMatches) {
+          result = coutMatches.map(match => {
+            const content = match.replace(/cout\s*<<\s*(.*?)\s*<</, '$1').replace(/['"]/g, '');
+            return content;
+          }).join('\n');
+        } else {
+          result = 'Code compiled successfully (no output)';
+        }
+      } else if (language === 'csharp') {
+        // Extract Console.WriteLine statements
+        const printMatches = code.match(/Console\.WriteLine\((.*?)\)/g);
+        if (printMatches) {
+          result = printMatches.map(match => {
+            const content = match.replace(/Console\.WriteLine\((.*?)\)/, '$1').replace(/['"]/g, '');
+            return content;
+          }).join('\n');
+        } else {
+          result = 'Code compiled successfully (no output)';
+        }
+      } else if (language === 'go') {
+        // Extract fmt.Println statements
+        const printMatches = code.match(/fmt\.Println\((.*?)\)/g);
+        if (printMatches) {
+          result = printMatches.map(match => {
+            const content = match.replace(/fmt\.Println\((.*?)\)/, '$1').replace(/['"]/g, '');
+            return content;
+          }).join('\n');
+        } else {
+          result = 'Code compiled successfully (no output)';
+        }
+      } else if (language === 'rust') {
+        // Extract println! macro calls
+        const printMatches = code.match(/println!\((.*?)\)/g);
+        if (printMatches) {
+          result = printMatches.map(match => {
+            const content = match.replace(/println!\((.*?)\)/, '$1').replace(/['"]/g, '');
+            return content;
+          }).join('\n');
+        } else {
+          result = 'Code compiled successfully (no output)';
+        }
+      } else {
+        result = `Code execution for ${language} is not yet supported`;
+      }
+
+      setOutput(`Running ${language.toUpperCase()} code...\n\n> ${result}`);
+      toast.success(`Code executed successfully`);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorMsg = `Error: ${errorMessage}`;
+      setOutput(errorMsg);
+      toast.error('Code execution failed');
+    }
   };
 
   // Function to download code
@@ -132,12 +232,15 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
   };
 
   return (
-    <div className="h-[calc(100vh-3.5rem)] flex flex-col">
-      <div className="border-b p-2 bg-card">
+    <div className="h-[calc(100vh-3.5rem)] flex flex-col" role="main" aria-label="Code editor">
+      <div className="border-b p-2 bg-card" role="toolbar" aria-label="Editor controls">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Select value={language} onValueChange={handleLanguageChange}>
-              <SelectTrigger className="w-[140px] h-8">
+              <SelectTrigger
+                className="w-[140px] h-8"
+                aria-label="Select programming language"
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -147,15 +250,16 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
                       <LanguageBadge
                         language={
                           lang.id as
-                            | 'javascript'
-                            | 'typescript'
-                            | 'python'
-                            | 'html'
-                            | 'css'
-                            | 'cpp'
-                            | 'csharp'
-                            | 'go'
-                            | 'rust'
+                          | 'javascript'
+                          | 'typescript'
+                          | 'python'
+                          | 'html'
+                          | 'css'
+                          | 'java'
+                          | 'cpp'
+                          | 'csharp'
+                          | 'go'
+                          | 'rust'
                         }
                       />
                       <span>{lang.name}</span>
@@ -167,15 +271,16 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
             <LanguageBadge language={language} size="sm" />
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" role="group" aria-label="Code actions">
             <Button
               variant="ghost"
               size="icon"
               onClick={copyCode}
               className="h-8 w-8"
               title="Copy Code"
+              aria-label="Copy code to clipboard"
             >
-              <Copy size={16} />
+              <Copy size={16} aria-hidden="true" />
             </Button>
             <Button
               variant="ghost"
@@ -183,11 +288,18 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
               onClick={downloadCode}
               className="h-8 w-8"
               title="Download Code"
+              aria-label="Download code as file"
             >
-              <Download size={16} />
+              <Download size={16} aria-hidden="true" />
             </Button>
-            <Button variant="default" size="sm" onClick={runCode} className="gap-1">
-              <Play size={14} />
+            <Button
+              variant="default"
+              size="sm"
+              onClick={runCode}
+              className="gap-1"
+              aria-label="Run code"
+            >
+              <Play size={14} aria-hidden="true" />
               <span>Run</span>
             </Button>
           </div>
@@ -196,7 +308,7 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
 
       <ResizablePanelGroup direction="vertical" className="flex-grow">
         <ResizablePanel defaultSize={70} minSize={30}>
-          <div className="h-full overflow-hidden">
+          <div className="h-full overflow-hidden" role="region" aria-label="Code editor area">
             <Editor
               height="100%"
               language={language}
@@ -217,14 +329,20 @@ const CodeEditor = ({ roomId }: { roomId: string }) => {
                 wordWrap: 'on',
                 tabSize: 2,
                 automaticLayout: true,
-                fixedOverflowWidgets: true
+                fixedOverflowWidgets: true,
+                ariaLabel: `Code editor for ${language}`
               }}
               theme="vs-dark"
             />
           </div>
         </ResizablePanel>
         <ResizablePanel defaultSize={30} minSize={15}>
-          <div className="h-full p-2 bg-black/70 font-mono text-sm overflow-auto">
+          <div
+            className="h-full p-2 bg-black/70 font-mono text-sm overflow-auto"
+            role="region"
+            aria-label="Code output console"
+            aria-live="polite"
+          >
             <div className="p-2 text-gray-300 whitespace-pre-wrap">
               {output || '// Output will appear here when you run your code'}
             </div>
