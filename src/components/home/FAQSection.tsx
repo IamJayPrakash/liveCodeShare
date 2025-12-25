@@ -40,6 +40,11 @@ const faqs = [
         answer:
             'Yes! LiveCodeShare is fully responsive and works on mobile phones and tablets, allowing you to view and edit code on the go.',
     },
+    {
+        question: 'What makes this the best online code share tool?',
+        answer:
+            'LiveCodeShare offers zero-latency live code sharing, multiple language support, and a completely browser-based experience without any setup, making it the premier choice for online code sharing and collaborative programming.',
+    },
 ];
 
 export function FAQSection() {

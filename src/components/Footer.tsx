@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Github, Twitter, Mail, Heart, ExternalLink, Code, FileCode, Sparkles } from 'lucide-react';
+import { Github, Twitter, Mail, Heart, ExternalLink, Code, FileCode, Sparkles, Linkedin } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Separator } from '@/components/ui/separator';
 
@@ -13,7 +13,7 @@ export function Footer() {
     <footer className="w-full border-t bg-background pt-12 pb-8 relative">
       {/* Decorative gradient element */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
-      
+
       <div className="container px-4 md:px-8 lg:px-12 py-8">
         {/* Main footer content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-8">
@@ -29,7 +29,7 @@ export function Footer() {
               Collaborate on code in real-time with developers around the world.
               Build together, learn together, code together.
             </p>
-            
+
             {/* Social links with enhanced styling */}
             <div className="flex items-center mt-6 space-x-3">
               <Link
@@ -51,7 +51,16 @@ export function Footer() {
                 <Twitter size={18} />
               </Link>
               <Link
-                href="mailto:info@livecodeshare.com"
+                href="https://www.linkedin.com/in/iamjayprakash"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full p-2.5 bg-secondary/80 text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:-translate-y-1 shadow-sm"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={18} />
+              </Link>
+              <Link
+                href="mailto:iammrjayprakash@gmail.com"
                 className="rounded-full p-2.5 bg-secondary/80 text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200 transform hover:-translate-y-1 shadow-sm"
                 aria-label="Email"
               >
@@ -145,7 +154,7 @@ export function Footer() {
           <p className="text-sm text-muted-foreground mb-4 sm:mb-0 flex items-center">
             <span>© {currentYear} LiveCodeShare. All rights reserved.</span>
           </p>
-          
+
           <div className="flex items-center text-sm bg-secondary/30 px-4 py-2 rounded-full">
             <span className="text-muted-foreground">Crafted with</span>
             <Heart size={14} className="mx-1.5 text-destructive animate-pulse" fill="currentColor" />

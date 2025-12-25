@@ -14,9 +14,9 @@ const features = [
     },
     {
         icon: <Code2 className="h-6 w-6 text-blue-500" />,
-        title: 'Multi-Language Support',
+        title: 'Online Compiler for 50+ Languages',
         description:
-            'Write in your favorite language. We support syntax highlighting and intelligent formatting for JavaScript, Python, Java, C++, and 50+ others.',
+            'Use our high-performance online js compiler, online c compiler, online python compiler, and more. We support intelligent formatting for JavaScript, Python, Java, C++, and 50+ other languages.',
     },
     {
         icon: <Users2 className="h-6 w-6 text-green-500" />,
@@ -56,7 +56,7 @@ export function FeatureSection() {
                     className="text-center mb-16 space-y-4"
                 >
                     <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                        Why Choose LiveCodeShare?
+                        Why Choose Our Online Code Share Platform?
                     </h2>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                         Powerful features designed to make collaborative coding effortless and productive.

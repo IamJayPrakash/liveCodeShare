@@ -8,12 +8,20 @@ export const siteUrl = 'https://livecodeshare.vercel.app';
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'LiveCodeShare - Real-Time Collaborative Code Editor & Pair Programming Tool',
+    default: 'LiveCodeShare - Code Share Online | Live Code Sharing Tool',
     template: '%s | LiveCodeShare',
   },
   description:
-    'LiveCodeShare is a real-time collaborative code editor built for developers, interviewers, educators, and teams. Share code instantly, collaborate effortlessly, and enjoy a smooth coding experience with syntax highlighting, customizable themes, live editing, and more.',
+    'The ultimate online code share platform for developers. LiveCodeShare provides real-time live code sharing, pair programming, and instant code collaboration. No signup required.',
   keywords: [
+    'online js compiler',
+    'online c compiler',
+    'online c++ compiler',
+    'online python compiler',
+    'online java compiler',
+    'online coding',
+    'web-based code compiler',
+    'online programming',
     'livecodeshare',
     'live code sharing',
     'real-time code collaboration',

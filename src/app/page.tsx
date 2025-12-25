@@ -47,8 +47,8 @@ export default function Home() {
             Live<span className="text-primary">Code</span>Share
           </h1>
           <p className="mx-auto max-w-[700px] text-lg text-muted-foreground md:text-xl">
-            Collaborate in real-time with others. Edit code, share instantly, and work together
-            seamlessly.
+            The ultimate <strong>online code share</strong> platform for <strong>live code sharing</strong>.
+            Collaborate in real-time, edit code, and share instantly with developers worldwide.
           </p>
         </motion.div>
 
