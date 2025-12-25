@@ -2,10 +2,18 @@ import { test, expect } from '@playwright/test';
 
 test.describe('LiveCodeShare E2E Flow', () => {
     test('Homepage loads with critical elements', async ({ page }) => {
-        await page.goto('/');
+        try {
+            await page.goto('/');
 
-        // Check Document Title
-        await expect(page).toHaveTitle(/LiveCodeShare/);
+            // Wait for loading shimmer/page to disappear
+            await expect(page.getByText('Loading LiveCodeShare...')).not.toBeVisible({ timeout: 15000 });
+
+            // Check Document Title
+            await expect(page).toHaveTitle(/LiveCodeShare/);
+        } catch (e) {
+            console.log('PAGE CONTENT ON FAILURE:', await page.content());
+            throw e;
+        }
 
         // Check Hero Section
         await expect(page.getByRole('heading', { name: 'LiveCodeShare' })).toBeVisible();

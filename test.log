@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+  ???  1 [chromium] ??? tests\full-flow.spec.ts:4:5 ??? LiveCodeShare E2E Flow ??? Homepage loads with critical elements (759ms)
+
+
+  1) [chromium] ??? tests\full-flow.spec.ts:4:5 ??? LiveCodeShare E2E Flow ??? Homepage loads with critical elements 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByRole('heading', { name: 'LiveCodeShare' })
+    Expected: visible
+    Error: strict mode violation: getByRole('heading', { name: 'LiveCodeShare' }) resolved to 7 elements:
+        1) <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">???</h1> aka locator('h1').filter({ hasText: /^LiveCodeShare$/ })
+        2) <h2 class="text-3xl font-bold tracking-tight md:text-4xl">Why Choose LiveCodeShare?</h2> aka getByRole('heading', { name: 'Why Choose LiveCodeShare?' })
+        3) <h1 class="text-4xl md:text-5xl text-primary-foreground font-bold">???</h1> aka getByRole('heading', { name: 'LiveCodeShare -Collaborate in' })
+        4) <h3 class="flex" data-state="closed" data-orientation="vertical">???</h3> aka getByRole('heading', { name: 'Is LiveCodeShare free to use?' })
+        5) <h3 class="flex" data-state="closed" data-orientation="vertical">???</h3> aka getByRole('heading', { name: 'Do I need to sign up to use' })
+        6) <h3 class="flex" data-state="closed" data-orientation="vertical">???</h3> aka getByRole('heading', { name: 'Can I use LiveCodeShare on' })
+        7) <h3 class="text-xl font-bold tracking-tight text-foreground">???</h3> aka locator('footer').getByRole('heading', { name: 'LiveCodeShare', exact: true })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByRole('heading', { name: 'LiveCodeShare' })[22m
+
+
+      17 |
+      18 |         // Check Hero Section
+    > 19 |         await expect(page.getByRole('heading', { name: 'LiveCodeShare' })).toBeVisible();
+         |                                                                            ^
+      20 |         await expect(page.getByText('Collaborate in real-time with others')).toBeVisible();
+      21 |
+      22 |         // Check "Create a New Room" button
+        at D:\Projects\livecodeshare\tests\full-flow.spec.ts:19:76
+
+    Error Context: test-results\full-flow-LiveCodeShare-E2-58b5d-oads-with-critical-elements-chromium\error-context.md
+
+  1 failed
+    [chromium] ??? tests\full-flow.spec.ts:4:5 ??? LiveCodeShare E2E Flow ??? Homepage loads with critical elements 
