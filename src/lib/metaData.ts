@@ -134,7 +134,7 @@ export const defaultMetadata: Metadata = {
     ],
   },
   manifest: `${siteUrl}/site.webmanifest`,
-  themeColor: '#0a192f',
+
   category: 'Developer Tools',
   applicationName: 'LiveCodeShare',
   generator: 'Next.js, TypeScript, Tailwind CSS',

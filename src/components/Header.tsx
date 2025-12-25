@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Users } from 'lucide-react';
 import { ShareRoomButton } from './ShareRoomButtton';
 import { ThemeToggle } from './theme/ThemeToggle';
+import { RoomInfo } from './RoomInfo';
 
 interface HeaderProps {
   readonly roomId?: string;
@@ -53,6 +54,7 @@ export function Header({ roomId, userCount }: HeaderProps) {
 
         <nav className="flex items-center gap-2 md:gap-4" aria-label="Main navigation">
           {roomId && <ShareRoomButton roomId={roomId} />}
+          {roomId && <RoomInfo roomId={roomId} userCount={userCount} />}
           <Link
             href="/help"
             className="hidden text-sm font-medium sm:inline-block md:text-base"
