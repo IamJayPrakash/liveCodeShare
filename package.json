@@ -99,7 +99,7 @@
     "@types/prop-types": "^15.7.14",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/uuid": "^10.0.0",
+    "@types/uuid": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "^16.1.1",
     "eslint-config-prettier": "^10.1.2",
