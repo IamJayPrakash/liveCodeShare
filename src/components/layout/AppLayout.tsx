@@ -14,7 +14,7 @@ export const AppLayout = ({ children }: { children: React.ReactNode }) => {
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme/ThemeToggle';
 import { Users } from 'lucide-react';
-import { ShareRoomButton } from '../ShareRoomButtton';
+import { ShareRoomButton } from '../ShareRoomButton';
 
 export function Header({ roomId, userCount }: Readonly<{ roomId?: string; userCount: number }>) {
   return (

@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
-import { socket } from '@/lib/socket';
+import { useContext } from 'react';
+import { SocketContext } from '@/context/SocketContext';
 
-export function useSocket() {
-  useEffect(() => {
-    socket.on('connect', () => {});
-    socket.on('disconnect', () => {});
-
-    return () => {
-      socket.off('connect', () => {});
-      socket.off('disconnect', () => {});
-    };
-  }, []);
-
-  return socket;
-}
+/**
+ * Custom hook to access the Socket.IO instance.
+ * 
+ * Provides access to the globally shared socket connection from the SocketContext.
+ * Ensures that components consume the same socket instance for consistent state.
+ * 
+ * @returns {import("socket.io-client").Socket | null} The socket instance or null if not connected/initialized.
+ * @throws {Error} If used outside of SocketProvider (though implementation just returns context).
+ */
+export const useSocket = () => {
+  return useContext(SocketContext);
+};

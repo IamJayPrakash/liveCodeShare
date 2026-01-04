@@ -3,12 +3,26 @@ import { Button } from '@/components/ui/button';
 import { Share2, Check } from 'lucide-react';
 
 interface ShareRoomButtonProps {
+  /** The ID of the room to be shared */
   readonly roomId: string;
 }
 
+/**
+ * Share Room Button Component
+ * 
+ * Provides a quick action to copy the current room's URL to the clipboard.
+ * Features a visual feedback state ("Copied!") for 2 seconds after clicking.
+ * 
+ * @param {ShareRoomButtonProps} props - Component props
+ * @returns {JSX.Element} The rendered button
+ */
 export function ShareRoomButton({ roomId }: ShareRoomButtonProps) {
   const [copied, setCopied] = useState(false);
 
+  /**
+   * Handles button click.
+   * Copies URL to clipboard and triggers feedback animation.
+   */
   const handleShareClick = () => {
     const roomUrl = `${window.location.origin}/room/${roomId}`;
     navigator.clipboard.writeText(roomUrl).then(() => {

@@ -1,15 +1,35 @@
 import React from 'react';
 import Link from 'next/link';
 import { Users } from 'lucide-react';
-import { ShareRoomButton } from './ShareRoomButtton';
+import { ShareRoomButton } from './ShareRoomButton';
 import { ThemeToggle } from './theme/ThemeToggle';
 import { RoomInfo } from './RoomInfo';
 
+/**
+ * HeaderProps interface definition
+ */
 interface HeaderProps {
+  /** Optional Room ID if currently in a room */
   readonly roomId?: string;
+  /** Number of active users in the room */
   readonly userCount: number;
 }
 
+/**
+ * Global Header Component
+ * 
+ * Persistent top navigation bar visible across the application.
+ * Adapts its content based on whether the user is in a room or on the homepage.
+ * 
+ * Features:
+ * - Logo and Home Link
+ * - Room Status Indicators (Room ID, User Count)
+ * - Navigation Actions (Share, Room Info, Help)
+ * - Theme Toggle
+ * 
+ * @param {HeaderProps} props - Component props
+ * @returns {JSX.Element} The rendered header
+ */
 export function Header({ roomId, userCount }: HeaderProps) {
   return (
     <header
@@ -18,6 +38,7 @@ export function Header({ roomId, userCount }: HeaderProps) {
     >
       <div className="flex h-14 items-center justify-between px-4 md:px-6 lg:px-8">
         <div className="flex items-center gap-2">
+          {/* Logo Section */}
           <Link
             href="/"
             className="flex items-center gap-2"
@@ -29,6 +50,7 @@ export function Header({ roomId, userCount }: HeaderProps) {
             <span className="hidden font-bold sm:inline-block">LiveCodeShare</span>
           </Link>
 
+          {/* Room Status Indicators */}
           {roomId && (
             <div className="ml-2 md:ml-4 flex items-center space-x-2">
               <div
@@ -38,6 +60,8 @@ export function Header({ roomId, userCount }: HeaderProps) {
               >
                 Room: <span className="font-mono font-medium text-foreground">{roomId}</span>
               </div>
+
+              {/* Active User Count Badge */}
               {userCount > 0 && (
                 <div
                   className="flex items-center space-x-1 rounded-full border px-3 py-1 text-xs"
@@ -52,6 +76,7 @@ export function Header({ roomId, userCount }: HeaderProps) {
           )}
         </div>
 
+        {/* Global Navigation & Actions */}
         <nav className="flex items-center gap-2 md:gap-4" aria-label="Main navigation">
           {roomId && <ShareRoomButton roomId={roomId} />}
           {roomId && <RoomInfo roomId={roomId} userCount={userCount} />}
