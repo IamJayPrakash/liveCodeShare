@@ -13,6 +13,7 @@ import { AppLayout } from '@/components/layout/AppLayout';
 import { Footer } from '@/components/Footer';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { FeatureSection } from '@/components/home/FeatureSection';
+import { ContentSection } from '@/components/home/ContentSection';
 import { FAQSection } from '@/components/home/FAQSection';
 import { CallToActionSection } from '@/components/home/CallToActionSection';
 
@@ -109,6 +110,8 @@ export default function Home() {
       </div>
 
       <FeatureSection />
+
+      <ContentSection />
 
       <AnimatedBackground title="LiveCodeShare" subtitle="-Collaborate in real-time with others.">
         <div className="py-8">

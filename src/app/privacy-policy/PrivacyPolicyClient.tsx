@@ -78,29 +78,50 @@ export default function PrivacyPolicyClient() {
                                 their own privacy policies.
                             </p>
 
-                            <h2 className="text-2xl font-bold flex items-center gap-2">5. Data Security</h2>
+                            <h2 className="text-2xl font-bold flex items-center gap-2">
+                                5. Google AdSense & Third-Party Cookies
+                            </h2>
+                            <p>
+                                Third-party vendors, including Google, use cookies to serve ads based on a user&apos;s
+                                prior visits to this website or other websites. Google&apos;s use of advertising cookies
+                                enables it and its partners to serve ads to your users based on their visit to your
+                                sites and/or other sites on the Internet.
+                            </p>
+                            <p>
+                                Users may opt out of personalized advertising by visiting
+                                <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="ml-1 text-primary hover:underline">
+                                    Google Ads Settings
+                                </a>.
+                                Alternatively, you can opt out of a third-party vendor&apos;s use of cookies for
+                                personalized advertising by visiting
+                                <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="ml-1 text-primary hover:underline">
+                                    aboutads.info
+                                </a>.
+                            </p>
+
+                            <h2 className="text-2xl font-bold flex items-center gap-2">6. Data Security</h2>
                             <p>
                                 We implement appropriate technical and organizational measures to safeguard your
                                 information. However, no system is 100% secure, and we cannot guarantee absolute
                                 protection.
                             </p>
-                            <h2 className="text-2xl font-bold flex items-center gap-2">6. Your Rights</h2>
+                            <h2 className="text-2xl font-bold flex items-center gap-2">7. Your Rights</h2>
                             <p>You have the right to:</p>
                             <ul className="list-disc pl-5 md:pl-8">
                                 <li>Access or update your personal information.</li>
                                 <li>Withdraw consent for data processing.</li>
                                 <li>
-                                    To exercise any of these rights, please contact us at: [Insert contact email].
+                                    To exercise any of these rights, please contact us at: livecodeshare@gmail.com.
                                 </li>
                             </ul>
                             <h2 className="text-2xl font-bold flex items-center gap-2">
-                                7. Changes to This Policy
+                                8. Changes to This Policy
                             </h2>
                             <p>
                                 We may update this Privacy Policy from time to time. When we do, we will update
                                 the &quot;Effective Date&quot; at the top of the page.
                             </p>
-                            <h2 className="text-2xl font-bold flex items-center gap-2">8. Contact Us</h2>
+                            <h2 className="text-2xl font-bold flex items-center gap-2">9. Contact Us</h2>
                             <p>
                                 If you have any questions or concerns about this Privacy Policy, please reach out
                                 to us at:

@@ -11,6 +11,8 @@ import { SocketProvider } from '@/context/SocketContext';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Toaster } from '@/components/ui/sonner';
 import { ConnectionStatus } from '@/components/ConnectionStatus';
+import { AdSense } from '@/components/AdSense';
+import { CookieConsent } from '@/components/CookieConsent';
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
@@ -47,12 +49,7 @@ export default function RootLayout({
             __html: JSON.stringify(getSoftwareApplicationSchema()),
           }}
         />
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9129390699994968"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <AdSense />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SocketProvider>
@@ -60,6 +57,7 @@ export default function RootLayout({
             <ConnectionStatus />
             <div className="min-h-screen bg-background font-sans antialiased">
               <main className="flex min-h-screen flex-col">{children}</main>
+              <CookieConsent />
             </div>
           </ThemeProvider>
         </SocketProvider>
