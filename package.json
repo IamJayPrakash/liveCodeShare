@@ -59,7 +59,7 @@
     "embla-carousel-react": "^8.6.0",
     "express": "^5.1.0",
     "firebase": "^11.6.0",
-    "framer-motion": "^12.6.5",
+    "framer-motion": "^14.6.0",
     "gsap": "^3.13.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.507.0",
